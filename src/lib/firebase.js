@@ -1,7 +1,5 @@
 /* eslint-disable quotes */
-import {
-  onNavigate
-} from '../app.js';
+import { onNavigate } from '../app.js';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -16,7 +14,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+firebase.analytics(); // no es necesario activar la analitica de data
 
 const userProfile = (username) => {
   const user = firebase.auth().currentUser;
@@ -113,19 +111,6 @@ export const signOutUser = () => {
   });
 };
 
-export const prueba = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      window.localStorage.setItem('uid', `${user}`);
-    } else if ((window.location.pathname !== '/') || (window.location.pathname !== '/signUp')) {
-      alert('No has iniciado sesión');
-      console.log('user logged out');
-      onNavigate('/');
-    }
-  });
-};
-
 const db = firebase.firestore();
 db.collection('posts').get().then((snapshot) => {
-  console.log(snapshot.docs);
 });

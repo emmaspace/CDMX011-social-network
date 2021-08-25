@@ -1,15 +1,7 @@
-import {
-  signOutUser,
-  prueba
-} from '../lib/firebase.js';
+import { signOutUser } from '../lib/firebase.js';
 
 export const home = (target) => {
-  const login = true;
-  if (window.localStorage.getItem('uid' != null)) {
-    login = true;
-  }
-  if (login == true) {
-    const homeContainer = `
+  const homeContainer = `
     <header id="header-home">
       <div class="container" id="container-header">
         <img src="./assets/user.png" alt="User image" id="user-image"/>
@@ -30,11 +22,7 @@ export const home = (target) => {
       </div>
     </footer>
     `;
-    target.innerHTML = homeContainer;
-  } else {
-    const homeContainer = 'Ìnicia sesion porfa';
-    target.innerHTML = homeContainer;
-  }
+  target.innerHTML = homeContainer;
 
   const SignOutButton = document.getElementById('back-logout');
   SignOutButton.addEventListener('click', (event) => {

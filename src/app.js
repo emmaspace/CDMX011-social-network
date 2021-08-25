@@ -2,11 +2,10 @@
 import { signUp } from './components/signUp.js';
 import { logIn } from './components/logIn.js';
 import { home } from './components/home.js';
-import { prueba } from './lib/firebase.js'
 
 const rootDiv = document.getElementById('root');
 
-export const routes = {
+const routes = {
   '/': logIn,
   '/signUp': signUp,
   '/home': home,
@@ -18,11 +17,18 @@ export const onNavigate = (pathname) => {
   element(rootDiv);
 };
 
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    onNavigate('/home');
+  } else {
+    onNavigate('/');
+  }
+});
+
 const element = routes[window.location.pathname];
 element(rootDiv);
 
 window.onpopstate = () => {
   const path = routes[window.location.pathname];
   path(rootDiv);
-  prueba();
 };
