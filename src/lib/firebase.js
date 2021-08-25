@@ -12,6 +12,21 @@ const userProfile = (username) => {
     .catch();
 };
 
+export const signOutUser = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      // Sign-out successful.
+      onNavigate("/");
+    })
+    .catch((error) => {
+      // An error happened.
+      console.log(error);
+      alert("sucedió un error, intenta de nuevo");
+    });
+};
+
 export const signUpWithPassword = (email, password, repeatPassword, username) => {
   if (password !== repeatPassword) {
     document.getElementById('messageError').innerText = 'Las contraseñas no coinciden';
@@ -24,7 +39,7 @@ export const signUpWithPassword = (email, password, repeatPassword, username) =>
         const user = userCredential.user;
         console.log(user);
         userProfile(username);
-        onNavigate('/');
+        signOutUser();
         // ...
       })
       .catch((error) => {
@@ -77,17 +92,6 @@ export const logInWithGoogle = () => {
       const email = error.email;
       document.getElementById('messageError').innerText = email;
     });
-};
-
-export const signOutUser = () => {
-  firebase.auth().signOut().then(() => {
-    // Sign-out successful.
-    onNavigate('/');
-  }).catch((error) => {
-    // An error happened.
-    console.log(error);
-    alert('sucedió un error, intenta de nuevo');
-  });
 };
 
 // firebase.auth().onAuthStateChanged((user) => {
