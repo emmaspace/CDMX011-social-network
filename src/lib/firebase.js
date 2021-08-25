@@ -1,20 +1,5 @@
-/* eslint-disable quotes */
+/* eslint-disable import/no-cycle */
 import { onNavigate } from '../app.js';
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCdBTYZdI7S5lFnwTdlfj3wDXo6QC4eExs",
-  authDomain: "red-social-nova.firebaseapp.com",
-  projectId: "red-social-nova",
-  storageBucket: "red-social-nova.appspot.com",
-  messagingSenderId: "596012663423",
-  appId: "1:596012663423:web:6b94f492f4baa439baf54a",
-  measurementId: "G-QH0SRDMMYS",
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
 
 const userProfile = (username) => {
   const user = firebase.auth().currentUser;
@@ -29,7 +14,7 @@ const userProfile = (username) => {
 
 export const signUpWithPassword = (email, password, repeatPassword, username) => {
   if (password !== repeatPassword) {
-    document.getElementById("messageError").innerText = "Las contraseñas no coinciden";
+    document.getElementById('messageError').innerText = 'Las contraseñas no coinciden';
   } else {
     firebase
       .auth()
@@ -46,7 +31,7 @@ export const signUpWithPassword = (email, password, repeatPassword, username) =>
         const errorCode = error.code;
         console.log(errorCode);
         const errorMessage = error.message;
-        document.getElementById("messageError").innerText = errorMessage;
+        document.getElementById('messageError').innerText = errorMessage;
         // ..
       });
   }
@@ -61,13 +46,13 @@ export const logInWithUser = (email, password) => {
       const user = userCredential.user;
       console.log(user);
       onNavigate('/home');
-      document.getElementById("message").innerText = `Bienvenid@ ${user.displayName}`;
+      document.getElementById('message').innerText = `Bienvenid@ ${user.displayName}`;
     })
     .catch((error) => {
       const errorCode = error.code;
       console.log(errorCode);
       const errorMessage = error.message;
-      document.getElementById("messageError").innerText = errorMessage;
+      document.getElementById('messageError').innerText = errorMessage;
     });
 };
 
@@ -77,25 +62,20 @@ export const logInWithGoogle = () => {
     .auth()
     .signInWithPopup(provider)
     .then((result) => {
-      /** @type {firebase.auth.OAuthCredential} */
-      const credential = result.credential;
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const token = credential.accessToken;
-      // The signed-in user info.
       const user = result.user;
       console.log(user);
       onNavigate('/home');
-      document.getElementById("message").innerText = `Bienvenido ${user.displayName}`;
+      document.getElementById('message').innerText = `Bienvenid@ ${user.displayName}`;
     })
     .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       console.log(errorCode);
       const errorMessage = error.message;
-      console.log(errorMessage);
+      document.getElementById('messageError').innerText = errorMessage;
       // The email of the user's account used.
       const email = error.email;
-      console.log(email);
+      document.getElementById('messageError').innerText = email;
     });
 };
 
@@ -106,18 +86,20 @@ export const signOutUser = () => {
   }).catch((error) => {
     // An error happened.
     console.log(error);
-    alert("sucedió un error, intenta de nuevo");
+    alert('sucedió un error, intenta de nuevo');
   });
 };
 
-//const db = firebase.firestore();
+// firebase.auth().onAuthStateChanged((user) => {
+//   if (user) {
+//     console.log(user);
+//   } else if ((window.location.pathname !== '/') || (window.location.pathname !== '/signUp')) {
+//     console.log('usuario no conectado');
+//     onNavigate('/');
+//   }
+// });
 
-export const prueba = firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    console.log(user);
-  } else if ((window.location.pathname !== '/') || (window.location.pathname !== '/signUp')) {
-    alert('No has iniciado sesión');
-    console.log('user logged out');
-    onNavigate('/');
-  }
+const db = firebase.firestore();
+db.collection('posts').get().then((snapshot) => {
+  console.log(snapshot.docs);
 });
