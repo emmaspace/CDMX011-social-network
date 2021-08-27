@@ -1,3 +1,5 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-param-reassign */
 import { signOutUser } from '../lib/firebase.js';
 
 export const home = (target) => {
@@ -10,8 +12,11 @@ export const home = (target) => {
       </div>
     </header>
     <main id="main-home">
-      <div class="postButton">
-        <a href="#" id="post-link" aria-label="Link para redactar un post"><img src="./assets/new-post.png" alt="Crear un post nuevo" id="new-post"/></a>
+    <p id="message"></p>
+      <div id="container-post">
+        <div class="postButton">
+          <a href="#" id="post-link" aria-label="Link para redactar un post"><img src="./assets/new-post.png" alt="Crear un post nuevo" id="new-post"/></a>
+        </div>
       </div>
     </main>    
     <footer class= "homeFooter">

@@ -1,4 +1,6 @@
 /* eslint-disable quotes */
+/* eslint-disable import/no-cycle */
+
 import { signUp } from './components/signUp.js';
 import { logIn } from './components/logIn.js';
 import { home } from './components/home.js';
@@ -31,4 +33,9 @@ element(rootDiv);
 window.onpopstate = () => {
   const path = routes[window.location.pathname];
   path(rootDiv);
+  firebase.auth().onAuthStateChanged((user) => {
+    if (!user && ((window.location.pathname !== '/') || (window.location.pathname !== '/signUp'))) {
+      onNavigate('/');
+    }
+  });
 };

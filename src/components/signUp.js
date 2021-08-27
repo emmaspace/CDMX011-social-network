@@ -1,4 +1,5 @@
-/* eslint-disable quotes */
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-param-reassign */
 import { onNavigate } from '../app.js';
 import { signUpWithPassword } from '../lib/firebase.js';
 

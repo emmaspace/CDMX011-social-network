@@ -1,6 +1,7 @@
-/* eslint-disable quotes */
-import { onNavigate } from "../app.js";
-import { logInWithUser, logInWithGoogle } from "../lib/firebase.js";
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-param-reassign */
+import { onNavigate } from '../app.js';
+import { logInWithUser, logInWithGoogle } from '../lib/firebase.js';
 
 export const logIn = (target) => {
   const logInContainer = `
@@ -27,14 +28,14 @@ export const logIn = (target) => {
 `;
   target.innerHTML = logInContainer;
 
-  const toSignUp = document.getElementById("register");
-  toSignUp.addEventListener("click", (event) => {
+  const toSignUp = document.getElementById('register');
+  toSignUp.addEventListener('click', (event) => {
     event.preventDefault();
-    onNavigate("/signUp");
+    onNavigate('/signUp');
   });
 
-  const logInBttn = document.getElementById("logInButton");
-  logInBttn.addEventListener("click", (event) => {
+  const logInBttn = document.getElementById('logInButton');
+  logInBttn.addEventListener('click', (event) => {
     event.preventDefault();
     const email = document.getElementById('userOrEmail').value;
     const password = document.getElementById('password').value;
@@ -43,8 +44,8 @@ export const logIn = (target) => {
     document.getElementById('formLogIn').reset();
   });
 
-  const logInGoogleBttn = document.getElementById("logInGoogleButton");
-  logInGoogleBttn.addEventListener("click", (event) => {
+  const logInGoogleBttn = document.getElementById('logInGoogleButton');
+  logInGoogleBttn.addEventListener('click', (event) => {
     event.preventDefault();
     logInWithGoogle();
   });
