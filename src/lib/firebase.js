@@ -59,6 +59,7 @@ export const logInWithUser = (email, password) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      window.localStorage.setItem('uid', `${user}`);
       console.log(user);
       onNavigate('/home');
       document.getElementById('message').innerText = `Bienvenid@ ${user.displayName}`;
@@ -106,4 +107,15 @@ export const logInWithGoogle = () => {
 const db = firebase.firestore();
 db.collection('posts').get().then((snapshot) => {
   console.log(snapshot.docs);
+
+export const signOutUser = () => {
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+    onNavigate('/');
+  }).catch((error) => {
+    // An error happened.
+    console.log(error);
+    alert("sucedió un error, intenta de nuevo");
+  });
+};
 });

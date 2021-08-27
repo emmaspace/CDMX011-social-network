@@ -7,7 +7,7 @@ import { home } from './components/home.js';
 
 const rootDiv = document.getElementById('root');
 
-export const routes = {
+const routes = {
   '/': logIn,
   '/signUp': signUp,
   '/home': home,
