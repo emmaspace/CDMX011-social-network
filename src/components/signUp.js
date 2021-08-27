@@ -9,7 +9,7 @@ export const signUp = (target) => {
         <img src="./assets/logo.png" alt="Logo de Nova" id="img-signup"/>
     </header>
     <main>
-    <form class= "signUp" id="formRegister">
+    <form class= "signUp color-line" id="formRegister">
       <div class = "formContainer">
         <label for="email">e-mail*</label><br>
         <input type="email" id="email" required><br>

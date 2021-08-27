@@ -9,7 +9,7 @@ export const logIn = (target) => {
         <img src="./assets/logo.png" alt="Logo de Nova" id="img-login"/>
     </header>
     <main>
-    <form class="logIn" id="formLogIn">
+    <form class="logIn color-line" id="formLogIn">
       <div id="login-container">
         <label for="userOrEmail">Usuario o e-mail*</label><br>
         <input type="text" id="userOrEmail" required><br>

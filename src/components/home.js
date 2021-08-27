@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 import { signOutUser } from '../lib/firebase.js';
+import { onNavigate } from '../app.js';
 
 export const home = (target) => {
   const homeContainer = `
@@ -33,5 +34,11 @@ export const home = (target) => {
   SignOutButton.addEventListener('click', (event) => {
     event.preventDefault();
     signOutUser();
+  });
+
+  const writePost = document.getElementById('post-link');
+  writePost.addEventListener('click', (event) => {
+    event.preventDefault();
+    onNavigate('/post');
   });
 };

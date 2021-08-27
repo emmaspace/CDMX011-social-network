@@ -1,5 +1,6 @@
+/* eslint-disable quotes */
 /* eslint-disable import/no-cycle */
-import { onNavigate } from '../app.js';
+import { onNavigate } from "../app.js";
 
 const userProfile = (username) => {
   const user = firebase.auth().currentUser;
@@ -27,9 +28,14 @@ export const signOutUser = () => {
     });
 };
 
-export const signUpWithPassword = (email, password, repeatPassword, username) => {
+export const signUpWithPassword = (
+  email,
+  password,
+  repeatPassword,
+  username,
+) => {
   if (password !== repeatPassword) {
-    document.getElementById('messageError').innerText = 'Las contraseñas no coinciden';
+    document.getElementById("messageError").innerText = "Las contraseñas no coinciden";
   } else {
     firebase
       .auth()
@@ -46,7 +52,7 @@ export const signUpWithPassword = (email, password, repeatPassword, username) =>
         const errorCode = error.code;
         console.log(errorCode);
         const errorMessage = error.message;
-        document.getElementById('messageError').innerText = errorMessage;
+        document.getElementById("messageError").innerText = errorMessage;
         // ..
       });
   }
@@ -59,16 +65,16 @@ export const logInWithUser = (email, password) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      window.localStorage.setItem('uid', `${user}`);
+      window.localStorage.setItem("uid", `${user}`);
       console.log(user);
-      onNavigate('/home');
-      document.getElementById('message').innerText = `Bienvenid@ ${user.displayName}`;
+      onNavigate("/home");
+      document.getElementById("message").innerText = `Bienvenid@ ${user.displayName}`;
     })
     .catch((error) => {
       const errorCode = error.code;
       console.log(errorCode);
       const errorMessage = error.message;
-      document.getElementById('messageError').innerText = errorMessage;
+      document.getElementById("messageError").innerText = errorMessage;
     });
 };
 
@@ -80,18 +86,18 @@ export const logInWithGoogle = () => {
     .then((result) => {
       const user = result.user;
       console.log(user);
-      onNavigate('/home');
-      document.getElementById('message').innerText = `Bienvenid@ ${user.displayName}`;
+      onNavigate("/home");
+      document.getElementById("message").innerText = `Bienvenid@ ${user.displayName}`;
     })
     .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       console.log(errorCode);
       const errorMessage = error.message;
-      document.getElementById('messageError').innerText = errorMessage;
+      document.getElementById("messageError").innerText = errorMessage;
       // The email of the user's account used.
       const email = error.email;
-      document.getElementById('messageError').innerText = email;
+      document.getElementById("messageError").innerText = email;
     });
 };
 
@@ -105,10 +111,12 @@ export const logInWithGoogle = () => {
 // });
 
 const db = firebase.firestore();
-db.collection('posts').get().then((snapshot) => {
-  console.log(snapshot.docs);
-
-export const signOutUser = () => {
+db.collection("posts")
+  .get()
+  .then((snapshot) => {
+    console.log(snapshot.docs);
+  });
+/* export const signOutUser = () => {
   firebase.auth().signOut().then(() => {
     // Sign-out successful.
     onNavigate('/');
@@ -117,5 +125,4 @@ export const signOutUser = () => {
     console.log(error);
     alert("sucedió un error, intenta de nuevo");
   });
-};
-});
+}; */
