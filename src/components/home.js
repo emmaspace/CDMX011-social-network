@@ -14,10 +14,9 @@ export const home = (target) => {
     </header>
     <main id="main-home">
     <p id="message"></p>
-      <div id="container-post">
-        <div class="postButton">
-          <a href="#" id="post-link" aria-label="Link para redactar un post"><img src="./assets/new-post.png" alt="Crear un post nuevo" id="new-post"/></a>
-        </div>
+      <div id="container-post"></div>
+      <div class="postButton">
+        <a href="#" id="post-link" aria-label="Link para redactar un post"><img src="./assets/new-post.png" alt="Crear un post nuevo" id="new-post"/></a>
       </div>
     </main>    
     <footer class= "homeFooter">

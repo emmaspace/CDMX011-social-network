@@ -111,11 +111,40 @@ export const logInWithGoogle = () => {
 // });
 
 const db = firebase.firestore();
-db.collection("posts")
-  .get()
-  .then((snapshot) => {
-    console.log(snapshot.docs);
+export const addPost = (pelicula, genero, calificacion, comentario) => {
+  const user = firebase.auth().currentUser;
+  db.collection("posts")
+    .add({
+      usuario: user.displayName,
+      idUsuario: user.uid,
+      fecha: (new Date()).toLocaleString(),
+      pelicula,
+      genero,
+      calificacion,
+      comentario,
+      likes: [],
+    })
+    .then((algo) => {
+      console.log("Bien ya se guardo", algo);
+      onNavigate('/home');
+    })
+    .catch(() => {
+      console.log("Problemas en la nave, no se guardo :(");
+    });
+};
+
+export const getPost = () => {
+  db.collection('posts').orderBy('fecha', 'desc').get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+    });
   });
+};
+// db.collection("posts")
+//   .get()
+//   .then((snapshot) => {
+//     console.log(snapshot.docs);
+//   });
 /* export const signOutUser = () => {
   firebase.auth().signOut().then(() => {
     // Sign-out successful.

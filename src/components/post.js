@@ -2,6 +2,7 @@
 /* eslint-disable no-param-reassign */
 
 import { onNavigate } from "../app.js";
+import { addPost } from "../lib/firebase.js";
 
 export const post = (target) => {
   const publicacion = `
@@ -55,5 +56,15 @@ export const post = (target) => {
   closePost.addEventListener("click", (event) => {
     event.preventDefault();
     onNavigate("/home");
+  });
+    
+  const publishPost = document.getElementById("submitReview");
+  publishPost.addEventListener('click', (event) => {
+    const pelicula = document.getElementById('movie').value;
+    const genero = document.getElementById('genero').value;
+    const calif = document.getElementById('calificacion').value;
+    const coment = document.getElementById('comment').value;
+    addPost(pelicula, genero, calif, coment);
+    event.preventDefault();
   });
 };
