@@ -117,10 +117,10 @@ export const addPost = (pelicula, genero, calificacion, comentario) => {
     .add({
       usuario: user.displayName,
       idUsuario: user.uid,
-      fecha: (new Date()).toLocaleString(),
+      fecha: Date.now(),
       pelicula,
-      genero,
       calificacion,
+      genero,
       comentario,
       likes: [],
     })
@@ -133,13 +133,18 @@ export const addPost = (pelicula, genero, calificacion, comentario) => {
     });
 };
 
-export const getPost = () => {
-  db.collection('posts').orderBy('fecha', 'desc').get().then((querySnapshot) => {
+export const getPost = async () => {
+  const posts = [];
+  await db.collection('posts').orderBy('fecha', 'desc').get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
+      const post = doc.data();
+      post.id = doc.id;
+      posts.push(post);
     });
   });
+  return posts;
 };
+
 // db.collection("posts")
 //   .get()
 //   .then((snapshot) => {

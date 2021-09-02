@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Niramit&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Niramit:wght@300;400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Baumans&display=swap");
 
 * {
@@ -12,6 +12,7 @@ body {
   text-align: center;
   font-family: "Niramit", sans-serif;
   margin-bottom: 1rem;
+  color: white;
 }
 
 header {
@@ -146,7 +147,6 @@ header {
 
 #message,
 #messageError {
-  margin-top: 1rem;
   color: white;
   font-size: 1em;
 }
@@ -158,8 +158,7 @@ header {
   align-items: center;
 }
 
-#container-header {
-  padding: 10px 0px;
+#container-header, #header-post{
   border: none;
   border-bottom: 4px solid;
   border-image: linear-gradient(
@@ -170,19 +169,15 @@ header {
     )
     10;
 }
+
+#container-header {
+  padding: 10px 0px;
+}
+
 #header-post {
   padding: 10px 40px 4px 20px;
   margin: 0px;
   text-align: right;
-  border: none;
-  border-bottom: 4px solid;
-  border-image: linear-gradient(
-      270deg,
-      #1b8695 0%,
-      rgba(137, 18, 156, 0.52) 52.08%,
-      rgba(255, 0, 199, 0.4792) 100%
-    )
-    10;
 }
 
 #container-footer {
@@ -210,6 +205,7 @@ header {
   position: fixed;
   bottom: 0px;
   right: 0px;
+  background-color: #000027;
 }
 
 #user-image {
@@ -278,7 +274,9 @@ header {
   font-family: "Baumans", cursive;
 }
 
-.formPost select {
+.formPost select,
+.formPost textarea,
+.formPost input {
   color: white;
   font-size: 16px;
   font-family: "Niramit", sans-serif;
@@ -293,13 +291,6 @@ header {
   margin-top: 1em;
 }
 
-.formPost textarea,
-.formPost input {
-  color: white;
-  font-size: 15px;
-  font-family: "Niramit", sans-serif;
-}
-
 #form-post p {
   font-size: 24px;
   font-weight: bold;
@@ -309,6 +300,73 @@ header {
 #post-link {
   display: inline-block;
   height: 26px;
+}
+
+.postContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  border: none;
+  border-bottom: 1px solid #26818d;
+  padding: 20px 20px;
+}
+
+.postTemplate:last-child {
+  margin-bottom: calc(4em - 5px);
+}
+
+.info-container {
+  width: 300px;
+  color: white;
+  text-align: left;
+  position: relative;
+}
+
+.imag-container {
+  margin-right: 20px;
+}
+
+.GenreContainer {
+  width: fit-content;
+  padding: 3px 10px;
+  border-radius: 20px 20px;
+  display: inline-block;
+  font-size: 14px;
+  position: absolute;
+  right: 8%;
+  top: 70px;
+}
+.postDate {
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+.info-spacing {
+  margin-bottom: 1em;
+}
+
+.postScore,
+.ScoreNumber {
+  display: inline-block;
+}
+
+.postBttns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.postBttns button {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  margin-right: 4em;
+  cursor: pointer;
+}
+
+.postLikes p {
+  display: inline-block;
 }
 
 @media (min-device-width: 961px) {
@@ -327,5 +385,12 @@ header {
 
   #miembro {
     margin: 2vh 0px 0px;
+  }
+  .postBttns button {
+    margin-right: 5em;
+  }
+
+  .info-container{
+    width: 50vw;
   }
 }
