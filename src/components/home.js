@@ -35,8 +35,12 @@ export const home = (target) => {
     const allPosts = await getPost();
     const divCont = document.getElementById("container-post");
     if (divCont.firstElementChild == null) {
+      let cont = 1;
       allPosts.forEach((post) => {
-        document.getElementById("container-post").appendChild(postData(post));
+        document
+          .getElementById("container-post")
+          .appendChild(postData(post, cont));
+
         const colorsGenre = {
           Acción: "#F49273",
           "Ciencia-Ficción": "#45C3D3",
@@ -55,16 +59,39 @@ export const home = (target) => {
           elem.style.color = "#000027";
           elem.style["background-color"] = colorsGenre[color];
         });
-        // id = "${post.idUsuario}-buttons";
 
-        document.querySelectorAll(".userBttns").forEach((elem) => {
-          console.log(elem.id);
-          const userID = firebase.auth().currentUser.uid;
-          console.log(userID);
-          if (userID === elem.id) {
-            elem.style.visibility = "hidden";
-          }
-        });
+        /*document.querySelectorAll(".delete-post").forEach((bttn) => {
+          bttn.addEventListener("click",  (event) => {
+            const id = event.target.dataset.id;
+            /*try {
+              alert('¿Segur@ que deseas borrar tu publicación?')
+              await deletePost(id)
+            }
+            console.log(id)
+          });
+        });*/
+        cont += 1;
+      });
+
+      let cont2=1
+      document.querySelectorAll(".userBttns").forEach((elem) => {
+        const userID = firebase.auth().currentUser.uid;
+        if (userID !== elem.id) {
+          elem.style.visibility = "hidden";
+        } else {
+          const idBorrar = "#borrar-" + cont2;
+          const btnBorrar = document.querySelector(idBorrar);
+          btnBorrar.addEventListener("click", (event) => {
+            console.log("le di click al boton ", event.target.dataset.id);
+          });
+
+          const idEditar = "#editar-" + cont2;
+          const btnEditar = document.querySelector(idEditar);
+          btnEditar.addEventListener("click", (event) => {
+            console.log("le di click al boton ", event.target.dataset.id);
+          });
+        }
+        cont2+=1
       });
     }
   };
