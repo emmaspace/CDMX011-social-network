@@ -5,20 +5,27 @@ import { signUp } from './components/signUp.js';
 import { logIn } from './components/logIn.js';
 import { home } from './components/home.js';
 import { post } from './components/post.js';
+import { edit } from './components/updatePost.js';
 
 const rootDiv = document.getElementById('root');
+// const info = [];
 
 const routes = {
   '/': logIn,
   '/signUp': signUp,
   '/home': home,
   '/post': post,
+  '/edit': edit,
 };
 
-export const onNavigate = (pathname) => {
+export const onNavigate = (pathname, info) => {
   window.history.pushState({}, pathname, window.location.origin + pathname);
   const element = routes[pathname];
-  element(rootDiv);
+  if (element === edit) {
+    element(rootDiv, info);
+  } else {
+    element(rootDiv);
+  }
 };
 
 firebase.auth().onAuthStateChanged((user) => {

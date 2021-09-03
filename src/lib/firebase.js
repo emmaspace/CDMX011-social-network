@@ -154,6 +154,42 @@ export const deletePost = (id) => {
     });
 };
 
+export const infoPost = (id) => {
+  const docRef = db.collection("posts").doc(id);
+  docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        const pelicula = doc.data().pelicula;
+        const comentario = doc.data().comentario;
+        const calificacion = doc.data().calificacion;
+        const genero = doc.data().genero;
+
+        onNavigate("/edit", [pelicula, comentario, calificacion, genero, id]);
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+};
+
+export const updatePost = (pelicula, comentario, calificacion, genero, id) => {
+  db.collection('posts').doc(id).update({
+    pelicula,
+    comentario,
+    calificacion,
+    genero,
+  })
+    .then(() => {
+      console.log("Document successfully updated!");
+    })
+    .catch((error) => {
+      // The document probably doesn't exist.
+      console.error("Error updating document: ", error);
+    });
+};
+
 // db.collection("posts")
 //   .get()
 //   .then((snapshot) => {

@@ -35,10 +35,10 @@ export const postData = (post) => {
       <div class='postBttns'>
         <div class='userBttns' id='${post.idUsuario}'>
           <button class='delete-post' aria-label='Borrar publicación'>
-          <i class="fa fa-trash-o" data-id='${post.id}' aria-hidden="true" style='font-size:20px; color:white;'></i>             
+            <i class="fa fa-trash-o" data-id='${post.id}' aria-hidden="true" style='font-size:20px; color:white;'></i>             
           </button>
           <button class='edit-post' aria-label='Editar publicación'>
-          <i class="fa fa-pencil" data-id='${post.id}' aria-hidden="true" style='font-size:20px; color:white;'></i>
+            <i class="fa fa-pencil" data-id='${post.id}' data-user='${post.idUsuario}' aria-hidden="true" style='font-size:20px; color:white;'></i>
           </button>
         </div>
         <div class='postLikes'>

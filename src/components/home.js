@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 /* eslint-disable quotes */
-import { deletePost, getPost, signOutUser } from "../lib/firebase.js";
+import { deletePost, getPost, signOutUser, infoPost } from "../lib/firebase.js";
 import { onNavigate } from "../app.js";
 import { postData } from "./getPosts.js";
 
@@ -18,7 +18,7 @@ export const home = (target) => {
     <p id="message"></p>
       <div id="container-post"></div>
       <div class="postButton">
-        <a href="#" id="post-link" aria-label="Link para redactar un post" style="vertical-align:middle"><span> <img src="./assets/new-post.png" alt="Crear un post nuevo" id="new-post"/></span></a>
+        <a href="#" id="post-link" aria-label="Link para redactar un post" ><span> <img src="./assets/new-post.png" alt="Crear un post nuevo" id="new-post"/></span></a>
       </div>
     </main>    
     <footer class= "homeFooter">
@@ -56,6 +56,7 @@ export const home = (target) => {
           elem.style["background-color"] = colorsGenre[color];
         });
       });
+
       document.querySelectorAll(".userBttns").forEach((elem) => {
         const userID = firebase.auth().currentUser.uid;
         if (userID !== elem.id) {
@@ -74,6 +75,12 @@ export const home = (target) => {
               alert("Sucedió un error, no podemos borrar el post", error);
             }
           }
+        });
+      });
+      document.querySelectorAll(".edit-post").forEach((bttn) => {
+        bttn.addEventListener('click', (event) => {
+          const id = event.target.dataset.id;
+          infoPost(id);
         });
       });
     }
