@@ -43,7 +43,7 @@ export const post = (target) => {
         <option value="5">5 estrellas</option>
       </select>
 
-      <label for="comment">Comentario*:</label>
+      <label for="comment">Crítica*:</label>
       <textarea id="comment" name="comment" rows="4" cols="40" class="contornos" required></textarea>
       
       <button type="submit" id="submitReview">Publicar</button>

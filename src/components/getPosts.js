@@ -1,5 +1,5 @@
 /* eslint-disable quotes */
-export const postData = (post, i) => {
+export const postData = (post) => {
   const divPadre = document.createElement("div");
   let score = post.calificacion;
   if (score === "1") {
@@ -27,19 +27,19 @@ export const postData = (post, i) => {
       </div>
       <h3 class = 'postMovie'>Película:</h3>
       <p class='movieTitle info-spacing'>${post.pelicula}</p>
-      <h3 class ='postComment'>Comentario:</h3>
+      <h3 class ='postComment'>Crítica:</h3>
       <p class = 'Comment info-spacing'>${post.comentario}</p>
       <h3 class='postScore'>Calificación:</h3>
       <p class = 'ScoreNumber info-spacing fa'>${score}</p>
       <div class='postScoreStars'></div>
       <div class='postBttns'>
         <div class='userBttns' id='${post.idUsuario}'>
-            <button class='delete-post' aria-label='Borrar publicación'>
-            <i class="fa fa-trash-o" data-id='borrar-${i}' id='borrar-${i}' aria-hidden="true" style='font-size:20px; color:white;'></i>             
-            </button>
-            <button class='edit-post fa' aria-label='Editar publicación' data-id='${post.id}'>
-            <i class="fa fa-pencil" data-id='editar-${i}' id='editar-${i}'aria-hidden="true" style='font-size:20px; color:white;'></i>
-            </button>
+          <button class='delete-post' aria-label='Borrar publicación'>
+          <i class="fa fa-trash-o" data-id='${post.id}' aria-hidden="true" style='font-size:20px; color:white;'></i>             
+          </button>
+          <button class='edit-post' aria-label='Editar publicación'>
+          <i class="fa fa-pencil" data-id='${post.id}' aria-hidden="true" style='font-size:20px; color:white;'></i>
+          </button>
         </div>
         <div class='postLikes'>
           <p>${post.likes.length}</p>

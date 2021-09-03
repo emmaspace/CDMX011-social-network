@@ -196,8 +196,16 @@ header {
 
 #header-home {
   margin: 0;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: #000027;
+  z-index: 5;
 }
+
 #main-home {
+  margin-top: 52px;
   min-height: calc(90vh - 70px);
 }
 
@@ -222,19 +230,32 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 3em;
-  width: 3em;
-  position: fixed;
   bottom: 15%;
   right: 5%;
+  position: fixed;
+  width: fit-content;
+}
+
+#post-link {
+  height: 3em;
+  width: 3em;
   background: linear-gradient(
     271.63deg,
-    rgba(255, 0, 199, 0.479167) 0%,
-    rgba(137, 18, 156, 0.52) 27.6%,
+    rgba(255, 0, 199, 0.64) 0%,
+    rgba(137, 18, 156, 0.62) 27.6%,
     #1b8695 100%
   );
   border-radius: 50%;
+  display: inline-block;
 }
+
+#post-link img {
+  display: inline-block;
+  height: 26px;
+  position: relative;
+  top: 25%;
+}
+
 #submitReview {
   background: linear-gradient(
     271.63deg,
@@ -298,11 +319,6 @@ header {
   margin-bottom: 0.5em;
 }
 
-#post-link {
-  display: inline-block;
-  height: 26px;
-}
-
 .postContainer {
   width: 100%;
   display: flex;
@@ -354,6 +370,10 @@ header {
   display: inline-block;
 }
 
+.ScoreNumber {
+  color: rgb(250, 250, 43);
+}
+
 .postBttns {
   display: flex;
   justify-content: space-between;
@@ -365,8 +385,12 @@ header {
   cursor: pointer;
 }
 
-.delete-post {
-  margin-right: 7em;
+.userBttns {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 }
 
 .postLikes p {
@@ -389,9 +413,6 @@ header {
 
   #miembro {
     margin: 2vh 0px 0px;
-  }
-  .delete-post {
-    margin-right: 27em;
   }
 
   .info-container {
@@ -436,5 +457,64 @@ header {
   }
   .imag-container {
     padding-top: 11px;
+  }
+
+  .postButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 15%;
+    right: 5%;
+    width: fit-content;
+  }
+  #post-link {
+    display: inline-block;
+    border-radius: 40px;
+    background: linear-gradient(
+      271.63deg,
+      rgba(255, 0, 200, 0.767) 0%,
+      rgba(138, 18, 156, 0.781) 27.6%,
+      #1b8695 100%
+    );
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    font-size: 28px;
+    padding: 8px 20px;
+    width: fit-content;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    text-decoration: none;
+    height: fit-content;
+  }
+  #post-link span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.3s;
+    width: 100%;
+  }
+  #post-link span:after {
+    content: "Nueva publicación ";
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0px;
+  }
+  #post-link:hover span {
+    padding-right: 0px;
+  }
+
+  #post-link:hover span:after {
+    opacity: 1;
+    left: 0px;
+  }
+
+  #post-link:hover {
+    width: 300px;
+    text-align: right;
+    border-radius: 40px;
   }
 }
