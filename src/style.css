@@ -416,10 +416,31 @@ header {
   display: inline-block;
 }
 
+.display-none{
+  display: none;
+}
+
+.liked{
+  font-size:20px; 
+  color:red;
+}
+
 @media (min-device-width: 961px) {
   .formContainer,
   #login-container {
     width: 50%;
+  }
+
+  #user-image {
+    height: 40px;
+  }
+
+  #logo-home{
+    height: 40px;
+  }
+
+  #logout{
+    height: 36px;
   }
 
   #img-login {

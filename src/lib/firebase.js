@@ -32,10 +32,11 @@ export const signUpWithPassword = (
   email,
   password,
   repeatPassword,
-  username,
+  username
 ) => {
   if (password !== repeatPassword) {
-    document.getElementById("messageError").innerText = "Las contraseñas no coinciden";
+    document.getElementById("messageError").innerText =
+      "Las contraseñas no coinciden";
   } else {
     firebase
       .auth()
@@ -68,7 +69,9 @@ export const logInWithUser = (email, password) => {
       window.localStorage.setItem("uid", `${user}`);
       console.log(user);
       onNavigate("/home");
-      document.getElementById("message").innerText = `Bienvenid@ ${user.displayName}`;
+      document.getElementById(
+        "message"
+      ).innerText = `Bienvenid@ ${user.displayName}`;
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -87,7 +90,9 @@ export const logInWithGoogle = () => {
       const user = result.user;
       console.log(user);
       onNavigate("/home");
-      document.getElementById("message").innerText = `Bienvenid@ ${user.displayName}`;
+      document.getElementById(
+        "message"
+      ).innerText = `Bienvenid@ ${user.displayName}`;
     })
     .catch((error) => {
       // Handle Errors here.
@@ -126,7 +131,7 @@ export const addPost = (pelicula, genero, calificacion, comentario) => {
     })
     .then((algo) => {
       console.log("Bien ya se guardo", algo);
-      onNavigate('/home');
+      onNavigate("/home");
     })
     .catch(() => {
       console.log("Problemas en la nave, no se guardo :(");
@@ -135,20 +140,27 @@ export const addPost = (pelicula, genero, calificacion, comentario) => {
 
 export const getPost = async () => {
   const posts = [];
-  await db.collection('posts').orderBy('fecha', 'desc').get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      const post = doc.data();
-      post.id = doc.id;
-      posts.push(post);
+  await db
+    .collection("posts")
+    .orderBy("fecha", "desc")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const post = doc.data();
+        post.id = doc.id;
+        posts.push(post);
+      });
     });
-  });
   return posts;
 };
 
 export const deletePost = (id) => {
-  db.collection('posts').doc(id).delete().then(() => {
-    console.log("Document successfully deleted!");
-  })
+  db.collection("posts")
+    .doc(id)
+    .delete()
+    .then(() => {
+      console.log("Document successfully deleted!");
+    })
     .catch((error) => {
       console.error("Error removing document: ", error);
     });
@@ -175,12 +187,14 @@ export const infoPost = (id) => {
 };
 
 export const updatePost = (pelicula, comentario, calificacion, genero, id) => {
-  db.collection('posts').doc(id).update({
-    pelicula,
-    comentario,
-    calificacion,
-    genero,
-  })
+  db.collection("posts")
+    .doc(id)
+    .update({
+      pelicula,
+      comentario,
+      calificacion,
+      genero,
+    })
     .then(() => {
       console.log("Document successfully updated!");
     })
@@ -190,34 +204,33 @@ export const updatePost = (pelicula, comentario, calificacion, genero, id) => {
     });
 };
 
-// db.collection("posts")
-//   .get()
-//   .then((snapshot) => {
-//     console.log(snapshot.docs);
-//   });
-/* export const signOutUser = () => {
-  firebase.auth().signOut().then(() => {
-    // Sign-out successful.
-    onNavigate('/');
-  }).catch((error) => {
-    // An error happened.
-    console.log(error);
-    alert("sucedió un error, intenta de nuevo");
-  });
-<<<<<<< HEAD
+export const likePost = (idWriter, idUserLike) => {
+  const docRef = db.collection("posts").doc(idWriter);
+  docRef
+    .get()
+    .then((doc) => {
+      if (doc.data().likes.includes(idUserLike)) {
+        docRef.update({
+          likes: firebase.firestore.FieldValue.arrayRemove(idUserLike),
+        });
+        console.log("Le quitaste el like");
+        onNavigate("/home");
+      } else {
+        docRef.update({
+          likes: firebase.firestore.FieldValue.arrayUnion(idUserLike),
+        });
+        console.log("Le diste like");
+        onNavigate("/home");
+      }
+
+      onNavigate("/home");
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  /*db.collection('posts').doc(idWriter).update({
+    likes: firebase.firestore.FieldValue.arrayUnion(idUserLike),
+  });*/
 };
 
-//const db = firebase.firestore();
-
-export const prueba = firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    console.log(user);
-  } else if ((window.location.pathname !== '/') || (window.location.pathname !== '/signUp')) {
-    //alert('No has iniciado sesión');
-    console.log('user logged out');
-    onNavigate('/');
-  }
-});
-=======
-}; */
->>>>>>> emma
+//  db.collection('posts').doc(idWriter).onSnapshot((doc) => { console.log("Current data: ", doc.data()); });

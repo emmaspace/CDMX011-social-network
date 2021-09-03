@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 /* eslint-disable quotes */
-import { deletePost, getPost, signOutUser, infoPost } from "../lib/firebase.js";
+import { deletePost, getPost, signOutUser, infoPost, likePost } from "../lib/firebase.js";
 import { onNavigate } from "../app.js";
 import { postData } from "./getPosts.js";
 
@@ -83,6 +83,14 @@ export const home = (target) => {
           infoPost(id);
         });
       });
+      document.querySelectorAll(".like-post").forEach((bttn) => {
+        bttn.addEventListener('click', (event) => {
+          const idWriter = event.target.dataset.id;
+          const idUserLike = firebase.auth().currentUser.uid;
+          console.log(idWriter, idUserLike);
+          likePost(idWriter, idUserLike);
+        });
+      });
     }
   };
 
@@ -99,6 +107,8 @@ export const home = (target) => {
     event.preventDefault();
     onNavigate("/post");
   });
+
+  
 };
 // function genreColors() {
 //   const colorsGenre = {

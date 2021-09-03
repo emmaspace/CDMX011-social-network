@@ -8,7 +8,6 @@ import { post } from './components/post.js';
 import { edit } from './components/updatePost.js';
 
 const rootDiv = document.getElementById('root');
-// const info = [];
 
 const routes = {
   '/': logIn,
