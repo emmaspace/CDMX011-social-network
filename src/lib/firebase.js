@@ -1,20 +1,6 @@
 /* eslint-disable quotes */
-import { onNavigate } from '../app.js';
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCdBTYZdI7S5lFnwTdlfj3wDXo6QC4eExs",
-  authDomain: "red-social-nova.firebaseapp.com",
-  projectId: "red-social-nova",
-  storageBucket: "red-social-nova.appspot.com",
-  messagingSenderId: "596012663423",
-  appId: "1:596012663423:web:6b94f492f4baa439baf54a",
-  measurementId: "G-QH0SRDMMYS",
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+/* eslint-disable import/no-cycle */
+import { onNavigate } from "../app.js";
 
 const userProfile = (username) => {
   const user = firebase.auth().currentUser;
@@ -27,7 +13,27 @@ const userProfile = (username) => {
     .catch();
 };
 
-export const signUpWithPassword = (email, password, repeatPassword, username) => {
+export const signOutUser = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      // Sign-out successful.
+      onNavigate("/");
+    })
+    .catch((error) => {
+      // An error happened.
+      console.log(error);
+      alert("sucedió un error, intenta de nuevo");
+    });
+};
+
+export const signUpWithPassword = (
+  email,
+  password,
+  repeatPassword,
+  username,
+) => {
   if (password !== repeatPassword) {
     document.getElementById("messageError").innerText = "Las contraseñas no coinciden";
   } else {
@@ -39,7 +45,7 @@ export const signUpWithPassword = (email, password, repeatPassword, username) =>
         const user = userCredential.user;
         console.log(user);
         userProfile(username);
-        onNavigate('/');
+        signOutUser();
         // ...
       })
       .catch((error) => {
@@ -59,8 +65,9 @@ export const logInWithUser = (email, password) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      window.localStorage.setItem("uid", `${user}`);
       console.log(user);
-      onNavigate('/home');
+      onNavigate("/home");
       document.getElementById("message").innerText = `Bienvenid@ ${user.displayName}`;
     })
     .catch((error) => {
@@ -77,29 +84,118 @@ export const logInWithGoogle = () => {
     .auth()
     .signInWithPopup(provider)
     .then((result) => {
-      /** @type {firebase.auth.OAuthCredential} */
-      const credential = result.credential;
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const token = credential.accessToken;
-      // The signed-in user info.
       const user = result.user;
       console.log(user);
-      onNavigate('/home');
-      document.getElementById("message").innerText = `Bienvenido ${user.displayName}`;
+      onNavigate("/home");
+      document.getElementById("message").innerText = `Bienvenid@ ${user.displayName}`;
     })
     .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       console.log(errorCode);
       const errorMessage = error.message;
-      console.log(errorMessage);
+      document.getElementById("messageError").innerText = errorMessage;
       // The email of the user's account used.
       const email = error.email;
-      console.log(email);
+      document.getElementById("messageError").innerText = email;
     });
 };
 
-export const signOutUser = () => {
+// firebase.auth().onAuthStateChanged((user) => {
+//   if (user) {
+//     console.log(user);
+//   } else if ((window.location.pathname !== '/') || (window.location.pathname !== '/signUp')) {
+//     console.log('usuario no conectado');
+//     onNavigate('/');
+//   }
+// });
+
+const db = firebase.firestore();
+export const addPost = (pelicula, genero, calificacion, comentario) => {
+  const user = firebase.auth().currentUser;
+  db.collection("posts")
+    .add({
+      usuario: user.displayName,
+      idUsuario: user.uid,
+      fecha: Date.now(),
+      pelicula,
+      calificacion,
+      genero,
+      comentario,
+      likes: [],
+    })
+    .then((algo) => {
+      console.log("Bien ya se guardo", algo);
+      onNavigate('/home');
+    })
+    .catch(() => {
+      console.log("Problemas en la nave, no se guardo :(");
+    });
+};
+
+export const getPost = async () => {
+  const posts = [];
+  await db.collection('posts').orderBy('fecha', 'desc').get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const post = doc.data();
+      post.id = doc.id;
+      posts.push(post);
+    });
+  });
+  return posts;
+};
+
+export const deletePost = (id) => {
+  db.collection('posts').doc(id).delete().then(() => {
+    console.log("Document successfully deleted!");
+  })
+    .catch((error) => {
+      console.error("Error removing document: ", error);
+    });
+};
+
+export const infoPost = (id) => {
+  const docRef = db.collection("posts").doc(id);
+  docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        const pelicula = doc.data().pelicula;
+        const comentario = doc.data().comentario;
+        const calificacion = doc.data().calificacion;
+        const genero = doc.data().genero;
+
+        onNavigate("/edit", [pelicula, comentario, calificacion, genero, id]);
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+};
+
+export const updatePost = (pelicula, comentario, calificacion, genero, id) => {
+  db.collection('posts').doc(id).update({
+    pelicula,
+    comentario,
+    calificacion,
+    genero,
+  })
+    .then(() => {
+      console.log("Document successfully updated!");
+    })
+    .catch((error) => {
+      // The document probably doesn't exist.
+      console.error("Error updating document: ", error);
+    });
+};
+
+// db.collection("posts")
+//   .get()
+//   .then((snapshot) => {
+//     console.log(snapshot.docs);
+//   });
+/* export const signOutUser = () => {
   firebase.auth().signOut().then(() => {
     // Sign-out successful.
     onNavigate('/');
@@ -108,6 +204,7 @@ export const signOutUser = () => {
     console.log(error);
     alert("sucedió un error, intenta de nuevo");
   });
+<<<<<<< HEAD
 };
 
 //const db = firebase.firestore();
@@ -121,3 +218,6 @@ export const prueba = firebase.auth().onAuthStateChanged((user) => {
     onNavigate('/');
   }
 });
+=======
+}; */
+>>>>>>> emma
