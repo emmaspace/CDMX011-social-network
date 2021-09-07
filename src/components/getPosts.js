@@ -32,7 +32,7 @@ export const postData = (post) => {
       <div class='GenreContainer'>
         <p class='${post.genero}'>${post.genero}</p>
       </div>
-      <h3 class = 'postMovie'>Película:</h3>
+      <h3 class = 'postMovie'>Película o serie:</h3>
       <p class='movieTitle info-spacing'>${post.pelicula}</p>
       <h3 class ='postComment'>Crítica:</h3>
       <p class = 'Comment info-spacing'>${post.comentario}</p>
@@ -49,7 +49,7 @@ export const postData = (post) => {
           </button>
         </div>
         <div class='postLikes'>
-          <p class='likes-number'>${post.likes.length}</p>
+          <p class='likes-number' >${post.likes.length}</p>
           <button class='like-post fa' aria-label='Me gusta la publicación' data-id='${post.id}'>            
             <i class="fa fa-heart" aria-hidden="true" style='${styleHeart}' data-id='${post.id}' id='heart-${post.id}'></i>
           </button>
@@ -57,6 +57,5 @@ export const postData = (post) => {
       </div>
     </div>
 </div>`;
-  
   return divPadre;
 };

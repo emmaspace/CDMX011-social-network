@@ -2,8 +2,8 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable quotes */
 
-import { onNavigate } from "../app.js";
 import { addPost } from "../lib/firebase.js";
+import { onNavigate } from "../routes.js";
 
 export const post = (target) => {
   const publicacion = `
@@ -14,7 +14,7 @@ export const post = (target) => {
 
     <form id="form-post">
       <p>Escribe tu comentario</p>
-      <label for="movie">Película*:</label>
+      <label for="movie">Película o serie*:</label>
       <input type="text" name="movie" id="movie" class="contornos" required>
 
       <label for="genre">Género*:</label>
@@ -66,10 +66,17 @@ export const post = (target) => {
     const genero = document.getElementById("genero").value;
     const calif = document.getElementById("calificacion").value;
     const coment = document.getElementById("comment").value;
-    if (genero === '' || calif === '' || pelicula === '' || coment === '') {
-      alert('Por favor, llena todos los campos');
+    if (genero === "" || calif === "" || pelicula === "" || coment === "") {
+      alert("Por favor, llena todos los campos");
     } else {
-      addPost(pelicula, genero, calif, coment);
+      addPost(pelicula, genero, calif, coment)
+        .then((algo) => {
+          console.log("Bien ya se guardo", algo);
+          onNavigate("/home");
+        })
+        .catch(() => {
+          console.log("Problemas en la nave, no se guardo :(");
+        });
     }
   });
 };

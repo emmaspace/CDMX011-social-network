@@ -1,8 +1,14 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 /* eslint-disable quotes */
-import { deletePost, getPost, signOutUser, infoPost, likePost } from "../lib/firebase.js";
-import { onNavigate } from "../app.js";
+import {
+  deletePost,
+  getPost,
+  signOutUser,
+  infoPost,
+  likePost,
+} from "../lib/firebase.js";
+import { onNavigate } from "../routes.js";
 import { postData } from "./getPosts.js";
 
 export const home = (target) => {
@@ -32,8 +38,8 @@ export const home = (target) => {
   target.innerHTML = homeContainer;
 
   const printPost = async () => {
-    const allPosts = await getPost();
     const divCont = document.getElementById("container-post");
+    const allPosts = await getPost();
     if (divCont.firstElementChild == null) {
       allPosts.forEach((post) => {
         document.getElementById("container-post").appendChild(postData(post));
@@ -64,31 +70,57 @@ export const home = (target) => {
         }
       });
       document.querySelectorAll(".delete-post").forEach((bttn) => {
-        bttn.addEventListener('click', (event) => {
+        bttn.addEventListener("click", (event) => {
           const id = event.target.dataset.id;
-          const userConfirm = window.confirm('¿Seguro que deseas eliminar este post?');
+          const userConfirm = window.confirm(
+            "¿Seguro que deseas eliminar este post?"
+          );
           if (userConfirm === true) {
-            try {
-              deletePost(id);
-              onNavigate('/home');
-            } catch (error) {
-              alert("Sucedió un error, no podemos borrar el post", error);
-            }
+            deletePost(id)
+              .then(() => {
+                console.log("Document successfully deleted!");
+                onNavigate("/home");
+              })
+              .catch((error) => {
+                alert("Sucedió un error, no podemos borrar el post", error);
+              });
           }
         });
       });
       document.querySelectorAll(".edit-post").forEach((bttn) => {
-        bttn.addEventListener('click', (event) => {
+        bttn.addEventListener("click", (event) => {
           const id = event.target.dataset.id;
-          infoPost(id);
+          infoPost(id)
+            .then((doc) => {
+              if (doc.exists) {
+                console.log("Document data:", doc.data());
+                const pelicula = doc.data().pelicula;
+                const comentario = doc.data().comentario;
+                const calificacion = doc.data().calificacion;
+                const genero = doc.data().genero;
+                onNavigate("/edit", [
+                  pelicula,
+                  comentario,
+                  calificacion,
+                  genero,
+                  id,
+                ]);
+              }
+            })
+            .catch((error) => {
+              console.log("Error getting document:", error);
+            });
         });
       });
       document.querySelectorAll(".like-post").forEach((bttn) => {
-        bttn.addEventListener('click', (event) => {
+        bttn.addEventListener("click", (event) => {
           const idWriter = event.target.dataset.id;
           const idUserLike = firebase.auth().currentUser.uid;
           console.log(idWriter, idUserLike);
-          likePost(idWriter, idUserLike);
+          likePost(idWriter, idUserLike).then((updates) => {
+            console.log(updates);
+            // onNavigate('/home')
+          });
         });
       });
     }
@@ -100,6 +132,7 @@ export const home = (target) => {
   SignOutButton.addEventListener("click", (event) => {
     event.preventDefault();
     signOutUser();
+    onNavigate("/");
   });
 
   const writePost = document.getElementById("post-link");
@@ -107,8 +140,6 @@ export const home = (target) => {
     event.preventDefault();
     onNavigate("/post");
   });
-
-  
 };
 // function genreColors() {
 //   const colorsGenre = {
@@ -163,21 +194,26 @@ export const home = (target) => {
 //       <div class="container" id="container-header">
 //         <img src="./assets/user.png" alt="User image" id="user-image" height="50px"/>
 //         <img src="./assets/logo-home.png" alt="Logo de Nova" id="logo-home"/>
-//         <a href="#" id="back-logout" aria-label="Link para cerrar sesión"><img src="./assets/exit.png" alt="Cerrar sesión" id="logout"/></a>
+//         <a href="#" id="back-logout" aria-label="Link para cerrar sesión">
+//  <img src="./assets/exit.png" alt="Cerrar sesión" id="logout"/></a>
 //       </div>
 //     </header>
 //     <main id="main-home">
 //     <p id="message"></p>
 //       <div id="container-post"></div>
 //       <div class="postButton">
-//         <a href="#" id="post-link" aria-label="Link para redactar un post"><img src="./assets/new-post-desktop.png" alt="Crear un post nuevo" id="new-post"/></a>
+//         <a href="#" id="post-link" aria-label="Link para redactar un post">
+//  <img src="./assets/new-post-desktop.png" alt="Crear un post nuevo" id="new-post"/></a>
 //       </div>
-//     </main>    
+//     </main>
 //     <footer class= "homeFooter">
 //       <div class="container" id="container-footer">
-//         <a href="#" id="home-link" aria-label="Link para home"><img src="./assets/home.png" alt="inicio" id="home-icon"/></a>
-//         <a href="#" id="search-link" aria-label="Link para busqueda"><img src="./assets/search.png" alt="búsqueda" id="search-icon"/></a>
-//         <a href="#" id="config-link" aria-label="Link para configuraciones"><img src="./assets/config.png" alt="configuración" id="config-icon"/></a>
+//         <a href="#" id="home-link" aria-label="Link para home">
+//  <img src="./assets/home.png" alt="inicio" id="home-icon"/></a>
+//         <a href="#" id="search-link" aria-label="Link para busqueda">
+//  <img src="./assets/search.png" alt="búsqueda" id="search-icon"/></a>
+//         <a href="#" id="config-link" aria-label="Link para configuraciones">
+//  <img src="./assets/config.png" alt="configuración" id="config-icon"/></a>
 //       </div>
 //     </footer>
 //     `;

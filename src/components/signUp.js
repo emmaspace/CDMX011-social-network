@@ -1,7 +1,8 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
-import { onNavigate } from '../app.js';
-import { signUpWithPassword } from '../lib/firebase.js';
+/* eslint-disable quotes */
+import { signUpWithPassword, userProfile } from "../lib/firebase.js";
+import { onNavigate } from "../routes.js";
 
 export const signUp = (target) => {
   const signUpContainer = `
@@ -31,20 +32,31 @@ export const signUp = (target) => {
 
   target.innerHTML = signUpContainer;
 
-  const toLogIn = document.getElementById('back');
-  toLogIn.addEventListener('click', (event) => {
+  const toLogIn = document.getElementById("back");
+  toLogIn.addEventListener("click", (event) => {
     event.preventDefault();
-    onNavigate('/');
+    onNavigate("/");
   });
 
-  const signUpBttn = document.getElementById('signUpButton');
-  signUpBttn.addEventListener('click', (event) => {
+  const signUpBttn = document.getElementById("signUpButton");
+  signUpBttn.addEventListener("click", (event) => {
     event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const passwordRepeat = document.getElementById('passwordRepeat').value;
-    const user = document.getElementById('user').value;
-    signUpWithPassword(email, password, passwordRepeat, user);
-    document.getElementById('formRegister').reset();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const passwordRepeat = document.getElementById("passwordRepeat").value;
+    if (password === passwordRepeat) {
+      signUpWithPassword(email, password)
+        .then(() => {
+          // document.getElementById("formRegister").reset();
+          const user = document.getElementById("user").value;
+          userProfile(user);
+          onNavigate('/home');
+        })
+        .catch((error) => {
+          document.getElementById("messageError").innerText = error.message;
+        });
+    } else {
+      document.getElementById("messageError").innerText = "Las contraseñas no coinciden";
+    }
   });
 };
