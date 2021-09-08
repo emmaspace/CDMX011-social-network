@@ -14,11 +14,11 @@ export const userProfile = (username) => {
 
 export const signOutUser = () => firebase.auth().signOut();
 
-export const signUpWithPassword = (email, password) => firebase
-  .auth().createUserWithEmailAndPassword(email, password);
+export const signUpWithPassword = (email, password) =>
+  firebase.auth().createUserWithEmailAndPassword(email, password);
 
-export const logInWithUser = (email, password) => firebase
-  .auth().signInWithEmailAndPassword(email, password);
+export const logInWithUser = (email, password) =>
+  firebase.auth().signInWithEmailAndPassword(email, password);
 
 export const logInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -56,21 +56,24 @@ export const getPost = async () => {
   return posts;
 };
 
-// export const getPost = async () => {
-//   const posts = [];
-//   await db
-//     .collection("posts")
-//     .orderBy("fecha", "desc")
-//     .onSnapshot((snapshots) => {
-//       snapshots.forEach((doc) => {
-//         const post = doc.data();
-//         post.id = doc.id;
-//         posts.push(post);
-//       });
-//     });
-//   console.log(posts, 'posts');
-//   return posts;
-// };
+export const getPostProfile = async () => {
+  const profileUser = firebase.auth().currentUser.uid;
+  const posts = [];
+  await db
+    .collection("posts")
+    .orderBy("fecha", "desc")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().idUsuario === profileUser) {
+          const post = doc.data();
+          post.id = doc.id;
+          posts.push(post);
+        }
+      });
+    });
+  return posts;
+};
 
 export const deletePost = (id) => db.collection("posts").doc(id).delete();
 
@@ -79,30 +82,10 @@ export const infoPost = (id) => {
   return docRef.get();
 };
 
-export const updatePost = (pelicula, comentario, calificacion, genero, id) => db.collection("posts").doc(id).update({
-  pelicula,
-  comentario,
-  calificacion,
-  genero,
-});
-
-export const likePost = (idWriter, idUserLike) => {
-  const docRef = db.collection("posts").doc(idWriter);
-  return docRef
-    .get()
-    .then((doc) => {
-      if (doc.data().likes.includes(idUserLike)) {
-        return docRef.update({
-          likes: firebase.firestore.FieldValue.arrayRemove(idUserLike),
-        });
-      }
-
-      return docRef.update({
-        likes: firebase.firestore.FieldValue.arrayUnion(idUserLike),
-      });
-    })
-    .catch((error) => {
-      console.log("Error getting document:", error);
-      throw error;
-    });
-};
+export const updatePost = (pelicula, comentario, calificacion, genero, id) =>
+  db.collection("posts").doc(id).update({
+    pelicula,
+    comentario,
+    calificacion,
+    genero,
+  });

@@ -82,7 +82,7 @@ export const edit = (target, info) => {
       && coment === info[1]
     ) {
       const confirm = window.confirm(
-        "No hiciste ningún cambio, ¿quieres continuar?"
+        "No hiciste ningún cambio, ¿quieres continuar?",
       );
       if (confirm === true) {
         onNavigate("/home");

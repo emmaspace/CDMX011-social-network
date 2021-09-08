@@ -3,6 +3,7 @@ import { logIn } from './components/logIn.js';
 import { post } from './components/post.js';
 import { signUp } from './components/signUp.js';
 import { edit } from './components/updatePost.js';
+import { profile } from './components/profile.js';
 
 const routes = {
   '/': logIn,
@@ -10,6 +11,7 @@ const routes = {
   '/home': home,
   '/post': post,
   '/edit': edit,
+  '/profile': profile,
 };
 
 export const dispatchRoute = (pathname, info) => {

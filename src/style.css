@@ -74,6 +74,7 @@ header {
   text-align: center;
   margin: 12px 0px;
   border: none;
+  padding: 8px 0px;
 }
 
 #logInGoogleButton {
@@ -90,6 +91,15 @@ header {
   text-align: center;
   margin: 12px 0px;
   border: none;
+  padding: 8px 0px;
+}
+
+#span-boton{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
 }
 
 #submitReview {
@@ -144,8 +154,6 @@ header {
   margin-bottom: 20px;
 }
 
-
-
 #miembro {
   color: white;
   font-family: "Niramit", sans-serif;
@@ -192,7 +200,7 @@ header {
 }
 
 #container-header {
-  padding: 10px 0px;
+  padding: 10px 0px 20px;
 }
 
 #header-post {
@@ -250,7 +258,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  bottom: 15%;
+  bottom: 17%;
   right: 5%;
   position: fixed;
   width: fit-content;
@@ -276,7 +284,12 @@ header {
   top: 25%;
 }
 
-
+#to-home, #to-profile {
+  position: relative;
+  top: 25%;
+  display: inline-block;
+  height: 28px;
+}
 
 #editReview {
   background: linear-gradient(
@@ -419,13 +432,33 @@ header {
   justify-content: space-between;
 }
 
-.display-none{
-  display: none;
+#hide{
+  display:none;
+  cursor: pointer;
 }
 
-.liked{
-  font-size:20px; 
-  color:red;
+#show{
+  cursor: pointer;
+}
+
+#hideRepeat{
+  display:none;
+  cursor: pointer;
+}
+
+#showRepeat{
+  cursor: pointer;
+}
+
+
+#formLogIn #show, #formLogIn #hide, #formRegister #hide, #formRegister #show, #formRegister #hideRepeat, #formRegister #showRepeat{
+  position: relative;
+  bottom: -5px;
+}
+
+
+img[alt="Ícono de Google"]{
+  margin-right: 8px;
 }
 
 @media (min-device-width: 961px) {
