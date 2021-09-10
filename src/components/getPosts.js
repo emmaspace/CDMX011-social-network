@@ -2,6 +2,8 @@
 export const postData = (post) => {
   const divPadre = document.createElement("div");
   let score = post.calificacion;
+  let styleHeart = 'font-size:20px; color:white;';
+  const idUserLike = firebase.auth().currentUser.uid;
   if (score === "1") {
     score = "&#xf005;";
   } else if (score === "2") {
@@ -12,6 +14,11 @@ export const postData = (post) => {
     score = "&#xf005; &#xf005; &#xf005; &#xf005;";
   } else if (score === "5") {
     score = "&#xf005; &#xf005; &#xf005; &#xf005; &#xf005;";
+  }
+  if (post.likes.includes(idUserLike)) {
+    styleHeart = 'font-size:20px; color:red;';
+  } else {
+    styleHeart = 'font-size:20px; color:white;';
   }
   divPadre.className = "postTemplate";
   divPadre.innerHTML = `
@@ -25,7 +32,7 @@ export const postData = (post) => {
       <div class='GenreContainer'>
         <p class='${post.genero}'>${post.genero}</p>
       </div>
-      <h3 class = 'postMovie'>Película:</h3>
+      <h3 class = 'postMovie'>Película o serie:</h3>
       <p class='movieTitle info-spacing'>${post.pelicula}</p>
       <h3 class ='postComment'>Crítica:</h3>
       <p class = 'Comment info-spacing'>${post.comentario}</p>
@@ -42,14 +49,13 @@ export const postData = (post) => {
           </button>
         </div>
         <div class='postLikes'>
-          <p>${post.likes.length}</p>
-          <button class='like-post fa' aria-label='Me gusta la publicación' data-id='${post.id}'>
-            <i class="fa fa-heart" aria-hidden="true" style='font-size:20px; color:white;'></i>
+          <p class='likes-number' >${post.likes.length}</p>
+          <button class='like-post fa' aria-label='Me gusta la publicación' data-id='${post.id}'>            
+            <i class="fa fa-heart" aria-hidden="true" style='${styleHeart}' data-id='${post.id}' id='heart-${post.id}'></i>
           </button>
         </div>
       </div>
     </div>
 </div>`;
-
   return divPadre;
 };

@@ -51,13 +51,74 @@ header {
   box-shadow: 0px 4px 4px rgba(38, 129, 141, 0.47);
   border-radius: 25px;
   width: 285px;
-  font-size: 20px;
   text-align: center;
   padding: 8px;
   font-size: 25px;
   color: #ffffff;
   margin-top: 25px;
   border: none;
+}
+
+#logInButton {
+  background: linear-gradient(
+    271.63deg,
+    #1b8695 0%,
+    rgba(137, 18, 156, 0.52) 72.92%,
+    rgba(255, 0, 199, 0.479167) 97.92%
+  );
+  box-shadow: 0px 4px 4px rgba(38, 129, 141, 0.47);
+  border-radius: 25px;
+  width: 285px;
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  margin: 12px 0px;
+  border: none;
+  padding: 8px 0px;
+}
+
+#logInGoogleButton {
+  background: linear-gradient(
+    180deg,
+    rgba(24, 155, 132, 0.62) 0%,
+    rgba(24, 61, 155, 0.62) 100%
+  );
+  box-shadow: 0px 4px 4px rgba(38, 129, 141, 0.47);
+  border-radius: 25px;
+  width: 285px;
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  margin: 12px 0px;
+  border: none;
+  padding: 8px 0px;
+}
+
+#span-boton{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+#submitReview {
+  background: linear-gradient(
+    271.63deg,
+    #1b8695 0%,
+    rgba(137, 18, 156, 0.52) 72.92%,
+    rgba(255, 0, 199, 0.479167) 97.92%
+  );
+  box-shadow: 0px 4px 4px rgba(38, 129, 141, 0.47);
+  border-radius: 25px;
+  width: 200px;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  margin: 20px 0px 12px 0px;
+  border: none;
+  padding: 5px 0;
+  font-family: "Baumans", cursive;
 }
 
 .signUpButton:active,
@@ -91,39 +152,6 @@ header {
     )
     10;
   margin-bottom: 20px;
-}
-
-#logInButton {
-  background: linear-gradient(
-    271.63deg,
-    #1b8695 0%,
-    rgba(137, 18, 156, 0.52) 72.92%,
-    rgba(255, 0, 199, 0.479167) 97.92%
-  );
-  box-shadow: 0px 4px 4px rgba(38, 129, 141, 0.47);
-  border-radius: 25px;
-  width: 285px;
-  font-size: 25px;
-  color: white;
-  text-align: center;
-  margin: 12px 0px;
-  border: none;
-}
-
-#logInGoogleButton {
-  background: linear-gradient(
-    180deg,
-    rgba(24, 155, 132, 0.62) 0%,
-    rgba(24, 61, 155, 0.62) 100%
-  );
-  box-shadow: 0px 4px 4px rgba(38, 129, 141, 0.47);
-  border-radius: 25px;
-  width: 285px;
-  font-size: 25px;
-  color: white;
-  text-align: center;
-  margin: 12px 0px;
-  border: none;
 }
 
 #miembro {
@@ -172,7 +200,7 @@ header {
 }
 
 #container-header {
-  padding: 10px 0px;
+  padding: 10px 0px 20px;
 }
 
 #header-post {
@@ -230,7 +258,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  bottom: 15%;
+  bottom: 17%;
   right: 5%;
   position: fixed;
   width: fit-content;
@@ -256,23 +284,11 @@ header {
   top: 25%;
 }
 
-#submitReview {
-  background: linear-gradient(
-    271.63deg,
-    #1b8695 0%,
-    rgba(137, 18, 156, 0.52) 72.92%,
-    rgba(255, 0, 199, 0.479167) 97.92%
-  );
-  box-shadow: 0px 4px 4px rgba(38, 129, 141, 0.47);
-  border-radius: 25px;
-  width: 200px;
-  font-size: 20px;
-  color: white;
-  text-align: center;
-  margin: 20px 0px 12px 0px;
-  border: none;
-  padding: 5px 0;
-  font-family: "Baumans", cursive;
+#to-home, #to-profile {
+  position: relative;
+  top: 25%;
+  display: inline-block;
+  height: 28px;
 }
 
 #editReview {
@@ -330,6 +346,10 @@ header {
   padding: 0;
   margin-left: 10%;
   margin-top: 1em;
+}
+
+.postLikes p {
+  display: inline-block;
 }
 
 #form-post p {
@@ -412,14 +432,51 @@ header {
   justify-content: space-between;
 }
 
-.postLikes p {
-  display: inline-block;
+#hide{
+  display:none;
+  cursor: pointer;
+}
+
+#show{
+  cursor: pointer;
+}
+
+#hideRepeat{
+  display:none;
+  cursor: pointer;
+}
+
+#showRepeat{
+  cursor: pointer;
+}
+
+
+#formLogIn #show, #formLogIn #hide, #formRegister #hide, #formRegister #show, #formRegister #hideRepeat, #formRegister #showRepeat{
+  position: relative;
+  bottom: -5px;
+}
+
+
+img[alt="Ícono de Google"]{
+  margin-right: 8px;
 }
 
 @media (min-device-width: 961px) {
   .formContainer,
   #login-container {
     width: 50%;
+  }
+
+  #user-image {
+    height: 40px;
+  }
+
+  #logo-home{
+    height: 40px;
+  }
+
+  #logout{
+    height: 36px;
   }
 
   #img-login {
@@ -470,10 +527,7 @@ header {
     font-style: oblique;
     margin: 0px;
   }
-
-  .postDate p {
-    font-size: 1em;
-  }
+  
   .imag-container {
     padding-top: 11px;
   }

@@ -2,8 +2,8 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable quotes */
 
-import { onNavigate } from "../app.js";
 import { updatePost } from "../lib/firebase.js";
+import { onNavigate } from "../routes.js";
 
 export const edit = (target, info) => {
   const publicacion = `
@@ -14,7 +14,7 @@ export const edit = (target, info) => {
 
     <form id="form-post">
       <p>Edita tu reseña</p>
-      <label for="movie">Película*:</label>
+      <label for="movie">Película o serie*:</label>
       <input type="text" name="movie" id="movie" class="contornos" required>
 
       <label for="genre">Género*:</label>
@@ -76,20 +76,27 @@ export const edit = (target, info) => {
     if (genero === "" || calif === "" || pelicula === "" || coment === "") {
       alert("Por favor, llena todos los campos");
     } else if (
-      pelicula === info[0] &&
-      genero === info[3] &&
-      calif === info[2] &&
-      coment === info[1]
+      pelicula === info[0]
+      && genero === info[3]
+      && calif === info[2]
+      && coment === info[1]
     ) {
       const confirm = window.confirm(
-        "No hiciste ningún cambio, ¿quieres continuar?"
+        "No hiciste ningún cambio, ¿quieres continuar?",
       );
       if (confirm === true) {
         onNavigate("/home");
       }
     } else {
-      updatePost(pelicula, coment, calif, genero, id);
-      onNavigate("/home");
+      updatePost(pelicula, coment, calif, genero, id)
+        .then(() => {
+          console.log("Document successfully updated!");
+          onNavigate("/home");
+        })
+        .catch((error) => {
+          // The document probably doesn't exist.
+          console.error("Error updating document: ", error);
+        });
     }
   });
 };
