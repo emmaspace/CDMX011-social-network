@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable quotes */
 /* eslint-disable import/no-cycle */
 
@@ -14,11 +15,9 @@ export const userProfile = (username) => {
 
 export const signOutUser = () => firebase.auth().signOut();
 
-export const signUpWithPassword = (email, password) =>
-  firebase.auth().createUserWithEmailAndPassword(email, password);
+export const signUpWithPassword = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
 
-export const logInWithUser = (email, password) =>
-  firebase.auth().signInWithEmailAndPassword(email, password);
+export const logInWithUser = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
 
 export const logInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -82,10 +81,9 @@ export const infoPost = (id) => {
   return docRef.get();
 };
 
-export const updatePost = (pelicula, comentario, calificacion, genero, id) =>
-  db.collection("posts").doc(id).update({
-    pelicula,
-    comentario,
-    calificacion,
-    genero,
-  });
+export const updatePost = (pelicula, comentario, calificacion, genero, id) => db.collection("posts").doc(id).update({
+  pelicula,
+  comentario,
+  calificacion,
+  genero,
+});
