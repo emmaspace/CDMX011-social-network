@@ -12,9 +12,13 @@ exports[`signUp debería desplegar la pantalla de signUp 1`] = `
         <input type=\\"email\\" id=\\"email\\" required=\\"\\"><br>
         <label for=\\"user\\">Nombre de usuario*</label><br>
         <input type=\\"text\\" id=\\"user\\" required=\\"\\"><br>
-        <label for=\\"password\\">Contraseña*</label><br>
+        <label for=\\"password\\">Contraseña*</label>
+        <span id=\\"show\\"><span class=\\"iconify\\" data-icon=\\"emojione-monotone:eye\\" style=\\"color: white;\\" data-height=\\"26\\"></span></span>       
+        <span id=\\"hide\\"><span class=\\"iconify\\" data-icon=\\"akar-icons:eye-closed\\" style=\\"color: white;\\" data-height=\\"26\\"></span></span><br>
         <input type=\\"password\\" id=\\"password\\" required=\\"\\"><br>
-        <label for=\\"passwordRepeat\\">Repite tu contraseña*</label><br>
+        <label for=\\"passwordRepeat\\">Repite tu contraseña*</label>
+        <span id=\\"showRepeat\\"><span class=\\"iconify\\" data-icon=\\"emojione-monotone:eye\\" style=\\"color: white;\\" data-height=\\"26\\"></span></span>       
+        <span id=\\"hideRepeat\\"><span class=\\"iconify\\" data-icon=\\"akar-icons:eye-closed\\" style=\\"color: white;\\" data-height=\\"26\\"></span></span><br>
         <input type=\\"password\\" id=\\"passwordRepeat\\" required=\\"\\"><br>  
       </div>
       <p id=\\"messageError\\"></p>

@@ -10,13 +10,15 @@ exports[`logIn debería desplegar la pantalla de logIn 1`] = `
       <div id=\\"login-container\\">
         <label for=\\"userOrEmail\\">Usuario o e-mail*</label><br>
         <input type=\\"text\\" id=\\"userOrEmail\\" required=\\"\\"><br>
-        <label for=\\"password\\">Contraseña*</label><br>
-        <input type=\\"password\\" id=\\"password\\" required=\\"\\"><br>         
+        <label for=\\"password\\">Contraseña*</label>
+        <span id=\\"show\\"><span class=\\"iconify\\" data-icon=\\"emojione-monotone:eye\\" style=\\"color: white;\\" data-height=\\"26\\"></span></span>       
+        <span id=\\"hide\\"><span class=\\"iconify\\" data-icon=\\"akar-icons:eye-closed\\" style=\\"color: white;\\" data-height=\\"26\\"></span></span><br>
+        <input type=\\"password\\" id=\\"password\\" required=\\"\\">       
       </div>
     <button class=\\"logInButton\\" type=\\"submit\\" id=\\"logInButton\\"> Iniciar Sesión </button>    
     </form>
     <p id=\\"messageError\\"></p>
-    <button class=\\"logInGoogleButton\\" type=\\"submit\\" id=\\"logInGoogleButton\\"> <img src=\\"./assets/google.png\\" alt=\\"Ícono de Google\\"> Ingresar con Google </button>
+    <button class=\\"logInGoogleButton\\" type=\\"submit\\" id=\\"logInGoogleButton\\"><span id=\\"span-boton\\"> <img src=\\"./assets/google.png\\" alt=\\"Ícono de Google\\" id=\\"logo-google\\"> Ingresar con Google </span></button>
     </main>
     <footer>
         <p id=\\"miembro\\">¿Aún no eres miembro?</p>

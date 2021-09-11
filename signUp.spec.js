@@ -13,9 +13,11 @@ describe('signUp', () => {
   beforeEach(() => {
     document.body.innerHTML = '<div id="root"></div>';
   });
-  const signUpForm = (email, password) => {
+  const signUpForm = (email, password, passwordRepeat, user) => {
     document.getElementById('email').value = email;
     document.getElementById('password').value = password;
+    document.getElementById('passwordRepeat').value = passwordRepeat;
+    document.getElementById('user').value = user;
     document.getElementById('signUpButton').click();
   };
 
@@ -34,6 +36,8 @@ describe('signUp', () => {
 
     const email = 'test@test.com';
     const password = '123456';
+    const passwordRepeat = '123456';
+    const user = 'Newt Scamander';
     const userConsole = { email, uid: 'xxxxxxx' };
 
     const mockCreateUserWithEmailAndPassword = jest.fn();
@@ -47,7 +51,7 @@ describe('signUp', () => {
     firebase.auth = () => mockFirebaseAuth;
 
     signUp(rootDiv);
-    signUpForm(email, password);
+    signUpForm(email, password, passwordRepeat, user);
 
     await delay(100);
 

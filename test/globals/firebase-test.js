@@ -8,5 +8,6 @@ global.firebase = {
   auth: () => ({
     currentUser: () => {},
     onAuthStateChanged: () => {},
+    createUserWithEmailAndPassword: () => {},
   }),
 };
