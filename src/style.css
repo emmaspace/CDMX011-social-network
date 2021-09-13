@@ -94,8 +94,8 @@ header {
   padding: 8px 0px;
 }
 
-#span-boton{
-  display:flex;
+#span-boton {
+  display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
@@ -222,6 +222,11 @@ header {
     10;
 }
 
+#container-footer p {
+  margin: 0px;
+  font-size: 12px;
+}
+
 #header-home {
   margin: 0;
   position: fixed;
@@ -230,6 +235,11 @@ header {
   width: 100%;
   background-color: #000027;
   z-index: 5;
+}
+
+#header-home div a{
+  display: flex;
+  align-items: center;
 }
 
 #main-home {
@@ -284,7 +294,8 @@ header {
   top: 25%;
 }
 
-#to-home, #to-profile {
+#to-home,
+#to-profile {
   position: relative;
   top: 25%;
   display: inline-block;
@@ -432,32 +443,35 @@ header {
   justify-content: space-between;
 }
 
-#hide{
-  display:none;
+#hide {
+  display: none;
   cursor: pointer;
 }
 
-#show{
+#show {
   cursor: pointer;
 }
 
-#hideRepeat{
-  display:none;
+#hideRepeat {
+  display: none;
   cursor: pointer;
 }
 
-#showRepeat{
+#showRepeat {
   cursor: pointer;
 }
 
-
-#formLogIn #show, #formLogIn #hide, #formRegister #hide, #formRegister #show, #formRegister #hideRepeat, #formRegister #showRepeat{
+#formLogIn #show,
+#formLogIn #hide,
+#formRegister #hide,
+#formRegister #show,
+#formRegister #hideRepeat,
+#formRegister #showRepeat {
   position: relative;
   bottom: -5px;
 }
 
-
-img[alt="Ícono de Google"]{
+img[alt="Ícono de Google"] {
   margin-right: 8px;
 }
 
@@ -471,11 +485,11 @@ img[alt="Ícono de Google"]{
     height: 40px;
   }
 
-  #logo-home{
+  #logo-home {
     height: 40px;
   }
 
-  #logout{
+  #logout {
     height: 36px;
   }
 
@@ -527,7 +541,7 @@ img[alt="Ícono de Google"]{
     font-style: oblique;
     margin: 0px;
   }
-  
+
   .imag-container {
     padding-top: 11px;
   }
@@ -589,5 +603,10 @@ img[alt="Ícono de Google"]{
     width: 300px;
     text-align: right;
     border-radius: 40px;
+  }
+
+  #container-footer p {
+    margin: 0px;
+    font-size: 14px;
   }
 }

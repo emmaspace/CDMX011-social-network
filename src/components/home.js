@@ -1,12 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 /* eslint-disable quotes */
-import {
-  deletePost,
-  getPost,
-  signOutUser,
-  infoPost,
-} from "../lib/firebase.js";
+import { deletePost, getPost, signOutUser, infoPost } from "../lib/firebase.js";
 import { onNavigate } from "../routes.js";
 import { postData } from "./getPosts.js";
 
@@ -14,23 +9,25 @@ export const home = (target) => {
   const homeContainer = `
     <header id="header-home">
       <div class="container" id="container-header">
-        <a href="#" id="to-profile" aria-label="Link para ir al perfil personal"><img src="./assets/user.png" alt="User image" id="user-image"/></a>
-        <a href="#" id="to-home" aria-label="Link para ir home"><img src="./assets/logo-home.png" alt="Logo de Nova" id="logo-home"/></a>
-        <a href="#" id="back-logout" aria-label="Link para cerrar sesión"><img src="./assets/exit.png" alt="Cerrar sesión" id="logout"/></a>
+        <a href="#" id="to-profile" aria-label="Link para ir al perfil personal" title='Ir a mi Perfil'><img src="./assets/user.png" alt="User image" id="user-image"/></a>
+        <a href="#" id="to-home" aria-label="Link para ir home" title='Ir a Home'><img src="./assets/logo-home.png" alt="Logo de Nova" id="logo-home"/></a>
+        <a href="#" id="back-logout" aria-label="Link para cerrar sesión" title='Cerrar Sesión'><img src="./assets/exit.png" alt="Cerrar sesión" id="logout"/></a>
       </div>
     </header>
     <main id="main-home">
-    <p id="message"></p>
       <div id="container-post"></div>
       <div class="postButton">
         <a href="#" id="post-link" aria-label="Link para redactar un post" ><span> <img src="./assets/new-post.png" alt="Crear un post nuevo" id="new-post"/></span></a>
       </div>
     </main>    
     <footer class= "homeFooter">
-      <div class="container" id="container-footer">
-        <a href="#" id="home-link" aria-label="Link para home"><img src="./assets/home.png" alt="inicio" id="home-icon"/></a>
+      <div id="container-footer">
+        <!-- <a href="#" id="home-link" aria-label="Link para home"><img src="./assets/home.png" alt="inicio" id="home-icon"/></a>
         <a href="#" id="search-link" aria-label="Link para busqueda"><img src="./assets/search.png" alt="búsqueda" id="search-icon"/></a>
         <a href="#" id="config-link" aria-label="Link para configuraciones"><img src="./assets/config.png" alt="configuración" id="config-icon"/></a>
+        -->
+        <p>NOVA©. Laboratoria 2021.</p>
+        <p>Creado por Angie, Emma e Isabel.</p>
       </div>
     </footer>
     `;
@@ -71,9 +68,7 @@ export const home = (target) => {
       document.querySelectorAll(".delete-post").forEach((bttn) => {
         bttn.addEventListener("click", (event) => {
           const id = event.target.dataset.id;
-          const userConfirm = window.confirm(
-            "¿Seguro que deseas eliminar este post?",
-          );
+          const userConfirm = window.confirm("¿Seguro que deseas eliminar este post?");
           if (userConfirm === true) {
             deletePost(id)
               .then(() => {
@@ -119,17 +114,26 @@ export const home = (target) => {
               const idUserLike = firebase.auth().currentUser.uid;
               const db = firebase.firestore();
               if (doc.data().likes.includes(idUserLike)) {
-                bttn.firstElementChild.style = 'font-size:20px; color:white;';
-                bttn.previousElementSibling.innerText = doc.data().likes.length - 1;
-                return db.collection("posts").doc(idWriter).update({
-                  likes: firebase.firestore.FieldValue.arrayRemove(idUserLike),
-                });
+                bttn.firstElementChild.style = "font-size:20px; color:white;";
+                bttn.previousElementSibling.innerText =
+                  doc.data().likes.length - 1;
+                return db
+                  .collection("posts")
+                  .doc(idWriter)
+                  .update({
+                    likes:
+                      firebase.firestore.FieldValue.arrayRemove(idUserLike),
+                  });
               }
-              bttn.firstElementChild.style = 'font-size:20px; color:red;';
-              bttn.previousElementSibling.innerText = doc.data().likes.length + 1;
-              return db.collection("posts").doc(idWriter).update({
-                likes: firebase.firestore.FieldValue.arrayUnion(idUserLike),
-              });
+              bttn.firstElementChild.style = "font-size:20px; color:red;";
+              bttn.previousElementSibling.innerText =
+                doc.data().likes.length + 1;
+              return db
+                .collection("posts")
+                .doc(idWriter)
+                .update({
+                  likes: firebase.firestore.FieldValue.arrayUnion(idUserLike),
+                });
             })
             .catch((error) => {
               console.log("Error getting document:", error);
@@ -153,12 +157,6 @@ export const home = (target) => {
   writePost.addEventListener("click", (event) => {
     event.preventDefault();
     onNavigate("/post");
-  });
-
-  const homeButton = document.getElementById("home-link");
-  homeButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    onNavigate("/home");
   });
 
   const profileButton = document.getElementById("to-profile");
