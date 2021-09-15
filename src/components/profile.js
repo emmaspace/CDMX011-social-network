@@ -20,6 +20,7 @@ export const profile = (target) => {
         </div>
       </header>
       <main id="main-home">
+        <h1 class='title-section'>Mi Universo Cinematográfico</h1>
         <div id="container-post"></div>
         <div class="postButton">
           <a href="#" id="post-link" aria-label="Link para redactar un post" ><span> <img src="./assets/new-post.png" alt="Crear un post nuevo" id="new-post"/></span></a>
@@ -64,12 +65,6 @@ export const profile = (target) => {
         });
       });
 
-      document.querySelectorAll('.userBttns').forEach((elem) => {
-        const userID = firebase.auth().currentUser.uid;
-        if (userID !== elem.id) {
-          elem.style.visibility = 'hidden';
-        }
-      });
       document.querySelectorAll('.delete-post').forEach((bttn) => {
         bttn.addEventListener('click', (event) => {
           const id = event.target.dataset.id;

@@ -227,6 +227,11 @@ header {
   font-size: 12px;
 }
 
+.title-section {
+  border: none;
+  border-bottom: 1px double #26818d;
+}
+
 #header-home {
   margin: 0;
   position: fixed;
@@ -237,13 +242,23 @@ header {
   z-index: 5;
 }
 
-#header-home div a{
+.info-container h2 {
+  width: fit-content;
+  font-size: 1.8em;
+  background: -webkit-linear-gradient(0deg, rgb(209, 4, 165) 0%, #00b7cf 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: white;
+}
+
+#header-home div a {
   display: flex;
   align-items: center;
 }
 
 #main-home {
-  margin-top: 52px;
+  margin-top: 60px;
   min-height: calc(90vh - 70px);
 }
 
@@ -359,10 +374,6 @@ header {
   margin-top: 1em;
 }
 
-.postLikes p {
-  display: inline-block;
-}
-
 #form-post p {
   font-size: 24px;
   font-weight: bold;
@@ -393,7 +404,8 @@ header {
 }
 
 .imag-container {
-  margin-right: 20px;
+  padding-top: 5px;
+  margin-right: 12px;
 }
 
 .GenreContainer {
@@ -605,8 +617,16 @@ img[alt="Ícono de Google"] {
     border-radius: 40px;
   }
 
+  .postLikes p {
+    display: inline-block;
+  }
+  
   #container-footer p {
     margin: 0px;
     font-size: 14px;
+  }
+
+  .title-section {
+    font-size: 45px;
   }
 }

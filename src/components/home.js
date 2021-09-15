@@ -15,7 +15,8 @@ export const home = (target) => {
       </div>
     </header>
     <main id="main-home">
-      <div id="container-post"></div>
+      <h1 class='title-section'>Cartelera</h1>
+      <div id="container-post"></div> 
       <div class="postButton">
         <a href="#" id="post-link" aria-label="Link para redactar un post" ><span> <img src="./assets/new-post.png" alt="Crear un post nuevo" id="new-post"/></span></a>
       </div>
