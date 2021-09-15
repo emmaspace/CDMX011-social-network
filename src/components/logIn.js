@@ -1,8 +1,6 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
-/* eslint-disable quotes */
-import { logInWithUser, logInWithGoogle } from "../lib/firebase.js";
-import { onNavigate } from "../routes.js";
+import { logInWithUser, logInWithGoogle } from '../lib/firebase.js';
+import { onNavigate } from '../routes.js';
 
 export const logIn = (target) => {
   const logInContainer = `
@@ -31,45 +29,40 @@ export const logIn = (target) => {
 `;
   target.innerHTML = logInContainer;
 
-  const toSignUp = document.getElementById("register");
-  toSignUp.addEventListener("click", (event) => {
+  const toSignUp = document.getElementById('register');
+  toSignUp.addEventListener('click', (event) => {
     event.preventDefault();
-    onNavigate("/signUp");
+    onNavigate('/signUp');
   });
 
-  const logInBttn = document.getElementById("logInButton");
-  logInBttn.addEventListener("click", (event) => {
+  const logInBttn = document.getElementById('logInButton');
+  logInBttn.addEventListener('click', (event) => {
     event.preventDefault();
-    const email = document.getElementById("userOrEmail").value;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById('userOrEmail').value;
+    const password = document.getElementById('password').value;
     logInWithUser(email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user.$.W);
-        onNavigate("/home");
+      .then(() => {
+        onNavigate('/home');
       })
       .catch((error) => {
         const errorMessage = error.message;
-        document.getElementById("messageError").innerText = errorMessage;
+        document.getElementById('messageError').innerText = errorMessage;
       });
   });
 
-  const logInGoogleBttn = document.getElementById("logInGoogleButton");
-  logInGoogleBttn.addEventListener("click", (event) => {
+  const logInGoogleBttn = document.getElementById('logInGoogleButton');
+  logInGoogleBttn.addEventListener('click', (event) => {
     event.preventDefault();
     logInWithGoogle()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        onNavigate("/home");
+      .then(() => {
+        onNavigate('/home');
       })
       .catch((error) => {
         const errorMessage = error.message;
-        document.getElementById("messageError").innerText = errorMessage;
+        document.getElementById('messageError').innerText = errorMessage;
         // The email of the user's account used.
         const email = error.email;
-        document.getElementById("messageError").innerText += email;
+        document.getElementById('messageError').innerText += email;
       });
   });
 

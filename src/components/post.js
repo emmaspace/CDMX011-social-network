@@ -1,9 +1,9 @@
+/* eslint-disable no-alert */
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
-/* eslint-disable quotes */
 
-import { addPost } from "../lib/firebase.js";
-import { onNavigate } from "../routes.js";
+import { addPost } from '../lib/firebase.js';
+import { onNavigate } from '../routes.js';
 
 export const post = (target) => {
   const publicacion = `
@@ -53,29 +53,28 @@ export const post = (target) => {
 
   target.innerHTML = publicacion;
 
-  const closePost = document.getElementById("closePost");
-  closePost.addEventListener("click", (event) => {
+  const closePost = document.getElementById('closePost');
+  closePost.addEventListener('click', (event) => {
     event.preventDefault();
-    onNavigate("/home");
+    onNavigate('/home');
   });
 
-  const publishPost = document.getElementById("submitReview");
-  publishPost.addEventListener("click", (event) => {
+  const publishPost = document.getElementById('submitReview');
+  publishPost.addEventListener('click', (event) => {
     event.preventDefault();
-    const pelicula = document.getElementById("movie").value;
-    const genero = document.getElementById("genero").value;
-    const calif = document.getElementById("calificacion").value;
-    const coment = document.getElementById("comment").value;
-    if (genero === "" || calif === "" || pelicula === "" || coment === "") {
-      alert("Por favor, llena todos los campos");
+    const pelicula = document.getElementById('movie').value;
+    const genero = document.getElementById('genero').value;
+    const calif = document.getElementById('calificacion').value;
+    const coment = document.getElementById('comment').value;
+    if (genero === '' || calif === '' || pelicula === '' || coment === '') {
+      alert('Por favor, llena todos los campos');
     } else {
       addPost(pelicula, genero, calif, coment)
-        .then((algo) => {
-          console.log("Bien ya se guardo", algo);
-          onNavigate("/home");
+        .then(() => {
+          onNavigate('/home');
         })
-        .catch(() => {
-          console.log("Problemas en la nave, no se guardo :(");
+        .catch((error) => {
+          throw error;
         });
     }
   });

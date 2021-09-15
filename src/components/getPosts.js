@@ -1,26 +1,25 @@
-/* eslint-disable quotes */
 export const postData = (post) => {
-  const divPadre = document.createElement("div");
+  const divPadre = document.createElement('div');
   let score = post.calificacion;
   let styleHeart = 'font-size:20px; color:white;';
   const idUserLike = firebase.auth().currentUser.uid;
-  if (score === "1") {
-    score = "&#xf005;";
-  } else if (score === "2") {
-    score = "&#xf005; &#xf005;";
-  } else if (score === "3") {
-    score = "&#xf005; &#xf005; &#xf005;";
-  } else if (score === "4") {
-    score = "&#xf005; &#xf005; &#xf005; &#xf005;";
-  } else if (score === "5") {
-    score = "&#xf005; &#xf005; &#xf005; &#xf005; &#xf005;";
+  if (score === '1') {
+    score = '&#xf005;';
+  } else if (score === '2') {
+    score = '&#xf005; &#xf005;';
+  } else if (score === '3') {
+    score = '&#xf005; &#xf005; &#xf005;';
+  } else if (score === '4') {
+    score = '&#xf005; &#xf005; &#xf005; &#xf005;';
+  } else if (score === '5') {
+    score = '&#xf005; &#xf005; &#xf005; &#xf005; &#xf005;';
   }
   if (post.likes.includes(idUserLike)) {
     styleHeart = 'font-size:20px; color:red;';
   } else {
     styleHeart = 'font-size:20px; color:white;';
   }
-  divPadre.className = "postTemplate";
+  divPadre.className = 'postTemplate';
   divPadre.innerHTML = `
   <div class = 'postContainer' id ='${post.id}'> 
     <div class="imag-container">

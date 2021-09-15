@@ -2,8 +2,6 @@
  * @jest-environment jsdom
  */
 /* eslint-disable max-len */
-// importamos la funcion que vamos a testear
-// import { onNavigate } from '../src/app.js';
 import './globals/firebase-test.js';
 import { signUp } from '../src/components/signUp.js';
 
@@ -24,7 +22,7 @@ describe('signUp', () => {
   it('debería ser una función', () => {
     expect(typeof signUp).toBe('function');
   });
-  // eslint-disable-next-line jest/no-focused-tests
+
   it('debería desplegar la pantalla de signUp', () => {
     const rootDiv = document.getElementById('root');
     signUp(rootDiv);

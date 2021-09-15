@@ -16,11 +16,11 @@ describe("post", () => {
   const postForm = (pelicula, genero, calif, coment) => {
     document.getElementById("movie").value = pelicula;
     document.getElementById("genero").value = genero;
-    document.getElementById('calificacion').value = calif;
-    document.getElementById('comment').value = coment;
+    document.getElementById("calificacion").value = calif;
+    document.getElementById("comment").value = coment;
     document.getElementById("submitReview").click();
   };
-  
+
   it("debería ser una función", () => {
     expect(typeof post).toBe("function");
   });
@@ -31,13 +31,13 @@ describe("post", () => {
     expect(rootDiv.innerHTML).toMatchSnapshot();
   });
 
-  it('registro del usuario exitoso', async () => {
-    const rootDiv = document.getElementById('root');
-    const pelicula = 'Harry Potter y el Caliz de Fuego';
-    const genero = 'Fantasía';
-    const calif = '5';
-    const coment = 'Muy buena película';
-    const userConsole = { email, uid: 'xxxxxxx' };
+  it("registro del usuario exitoso", async () => {
+    const rootDiv = document.getElementById("root");
+    const pelicula = "Harry Potter y el Caliz de Fuego";
+    const genero = "Fantasía";
+    const calif = "5";
+    const coment = "Muy buena película";
+    const userConsole = { email, uid: "xxxxxxx" };
 
     const mockCreateUserWithEmailAndPassword = jest.fn();
     mockCreateUserWithEmailAndPassword.mockResolvedValue(userConsole);
@@ -54,7 +54,9 @@ describe("post", () => {
 
     await delay(100);
 
-    expect(mockCreateUserWithEmailAndPassword).toHaveBeenCalledWith(email, password);
+    expect(mockCreateUserWithEmailAndPassword).toHaveBeenCalledWith(
+      email,
+      password
+    );
   });
-
 });

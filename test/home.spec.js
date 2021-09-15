@@ -1,8 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-/* eslint-disable quotes */
-//  import { onNavigate } from '../src/app.js';
 import './globals/firebase-test.js';
 import { home } from '../src/components/home.js';
 

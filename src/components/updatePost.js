@@ -1,9 +1,9 @@
+/* eslint-disable no-alert */
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
-/* eslint-disable quotes */
 
-import { updatePost } from "../lib/firebase.js";
-import { onNavigate } from "../routes.js";
+import { updatePost } from '../lib/firebase.js';
+import { onNavigate } from '../routes.js';
 
 export const edit = (target, info) => {
   const publicacion = `
@@ -53,28 +53,28 @@ export const edit = (target, info) => {
 
   target.innerHTML = publicacion;
 
-  document.getElementById("movie").value = info[0];
-  document.getElementById("genero").value = info[3];
-  document.getElementById("calificacion").value = info[2];
-  document.getElementById("comment").value = info[1];
+  document.getElementById('movie').value = info[0];
+  document.getElementById('genero').value = info[3];
+  document.getElementById('calificacion').value = info[2];
+  document.getElementById('comment').value = info[1];
 
-  const closePost = document.getElementById("closePost");
-  closePost.addEventListener("click", (event) => {
+  const closePost = document.getElementById('closePost');
+  closePost.addEventListener('click', (event) => {
     event.preventDefault();
-    onNavigate("/home");
+    onNavigate('/home');
   });
 
-  const editPost = document.getElementById("editReview");
-  editPost.addEventListener("click", (event) => {
+  const editPost = document.getElementById('editReview');
+  editPost.addEventListener('click', (event) => {
     event.preventDefault();
 
-    const pelicula = document.getElementById("movie").value;
-    const genero = document.getElementById("genero").value;
-    const calif = document.getElementById("calificacion").value;
-    const coment = document.getElementById("comment").value;
+    const pelicula = document.getElementById('movie').value;
+    const genero = document.getElementById('genero').value;
+    const calif = document.getElementById('calificacion').value;
+    const coment = document.getElementById('comment').value;
     const id = info[4];
-    if (genero === "" || calif === "" || pelicula === "" || coment === "") {
-      alert("Por favor, llena todos los campos");
+    if (genero === '' || calif === '' || pelicula === '' || coment === '') {
+      alert('Por favor, llena todos los campos');
     } else if (
       pelicula === info[0]
       && genero === info[3]
@@ -82,20 +82,18 @@ export const edit = (target, info) => {
       && coment === info[1]
     ) {
       const confirm = window.confirm(
-        "No hiciste ningún cambio, ¿quieres continuar?",
+        'No hiciste ningún cambio, ¿quieres continuar?',
       );
       if (confirm === true) {
-        onNavigate("/home");
+        onNavigate('/home');
       }
     } else {
       updatePost(pelicula, coment, calif, genero, id)
         .then(() => {
-          console.log("Document successfully updated!");
-          onNavigate("/home");
+          onNavigate('/home');
         })
         .catch((error) => {
-          // The document probably doesn't exist.
-          console.error("Error updating document: ", error);
+          throw error;
         });
     }
   });

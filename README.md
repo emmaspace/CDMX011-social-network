@@ -1,491 +1,351 @@
-# Creando una Red Social
+# Creando una Red Social - RED SOCIAL NOVA
 
 ## Índice
 
-* [1. Preámbulo](#1-preámbulo)
-* [2. Resumen del proyecto](#2-resumen-del-proyecto)
-* [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
-* [4. Consideraciones generales](#4-consideraciones-generales)
-* [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
-* [6. Hacker edition](#6-hacker-edition)
-* [7. Entrega](#7-entrega)
-* [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
+* [1. Resumen del proyecto](#1-resumen-del-proyecto)
+* [2. Historias de usario](#2-historias-de-usario)
+* [3. Objetivos de aprendizaje cumplidos](#3-objetivos-de-aprendizaje-cumplidos)
+* [4. Prototipos de baja y alta fidelidad](#4-prototipos-de-baja-y-alta-fidelidad)
+* [5. Acceso a nuestra red social](#5-acceso-a-nuestra-red-social)
+* [6. Tecnologías utilizadas](#6-tecnologías-utilizadas)
+* [7. Cocreadoras](#7-cocreadoras)
 
-## 1. Preámbulo
 
-Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
-sociales han invadido nuestras vidas. Las amamos u odiamos, y muchos no podemos
-vivir sin ellas.
+## 1. Resumen del proyecto
 
-Hay redes sociales de todo tipo y para todo tipo de intereses. Por ejemplo,
-en una ronda de financiamiento con inversionistas, se presentó una red social
-para químicos en la que los usuarios podían publicar artículos sobre sus
-investigaciones, comentar en los artículos de sus colegas, y filtrar artículos
-de acuerdo a determinadas etiquetas o su popularidad, lo más reciente, o lo
-más comentado.
+**NOVA** es una red social para todo cinéfilo o seriófilo que desea compartir recomendaciones o reseñas sobre sus series y películas favoritas. 
 
-## 2. Resumen del proyecto
+Esta red social podría ayudar al usuario a recordar todas las películas que vió durante el año, así como si le gustaron o no. De esta manera el usuario puede compartir con otros usuarios su opinión sobre diferentes películas, y de la misma manera, puede descubrir nuevas películas gracias a las reseñas de otros usuarios. Este servicio ayuda al usuario a reducir el tiempo que usa para encontrar una película y mejor utilizarlo en disfrutarla.
 
-En este proyecto construirás una Red Social sobre lo que decidan tú y tu equipo.
-Podría ser, por ejemplo, sobre alimentación saludable, feminismo, educación,
-salud, energías renovables, amantes de las [Empanadas](https://es.wikipedia.org/wiki/Empanada)
-o de los [Tacos de Canasta](https://es.wikipedia.org/wiki/Taco), de la
-[Feijoada](https://es.wikipedia.org/wiki/Feijoada), o de lo que sea.
+Para descubir las principales necesidades de nuestros usuarios, entrevistamos a dos personas por cada rango de edad que definimos: menores de 18 años, de 18 a 45 años y mayores de 46 años. Al comparar los datos que obtuvimos, delimitamos los puntos más importantes:
+- Los usuarios prefieren que los posts tengan una estructura definida al crearlos y mostrarlos, donde se pueda escribir el título de la serie o película, escoger el género, escoger la calificación y escribir un comentario al respecto.
+- Los usuarios desean que los posts aparezcan en orden cronológico, de los más recientes a los más antiguos.
+- Los usuarios desean que la calificación aparezca con estrellitas dentro del post publicado.
+- Los usurios desean utilizar un corazón para mostrar que les gusta una publicación.
+- Los usuarios desean poder ingresar a ***NOVA*** con Google (gmail) o con correo electrónico y contraseña. 
+- Los usuarios esperan tener un _Nombre de usuario_ diferente a su correo, que les permitta idenficarse fácilmente dentro de ***NOVA***
+- Los usuarios desean tener una página personal para poder visualizar sus propias publicaciones.
 
-Tu Red Social tendrá que permitir a cualquier usuario crear una cuenta de
-acceso y loguearse con ella; crear, editar, borrar y _"likear"_ publicacciones.
 
-El objetivo principal de aprendizaje de este proyecto es construir una
-[Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
-[_responsive_](https://curriculum.laboratoria.la/es/topics/css/02-responsive) (con más de una vista / página)
-en la que podamos **leer y escribir datos**.
+## 2. Historias de usario
 
-## 3. Objetivos de aprendizaje
+En este proyecto se escribieron 6 Historias de Usuario:
 
-Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en tu proyecto. Piensa en eso al decidir tu estrategia de trabajo.
+### ***HU1 Registro de Usuarios***
+**YO COMO** usuario **QUIERO** poder crear una cuenta en la red social **PARA** poder acceder al contenido
+
+#### Criterios de Aceptación
+- Sólo puedo al mismo usuario una vez
+- Puedo registrarme usando correo electrónico (gmail) válido, un usuario y una contraseña segura
+- La red social debe permitirme confirmar mi contraseña. 
+- La red social se adapta a cualquier dispositivo
+
+#### Definición de Terminado
+- Debe ser una single page
+- haber recibido un feedback de otra compañera
+- Test unitario
+- Testeo manual buscando errores e imperfecciones simples
+- Pruebas de usabilidad
+- Incorporar feedback
+- mostrar algún mensaje en caso de error
+- La página de registro debe tener un input para nombre, correo, contraseña, repetir contraseña.
+- El diseño en CSS debe respetar el prototipo de alta fidelidad. 
+- El template debe incluir un botón que jalar la función de Firebase y mostrar en el HTML  si el registro fue exitoso o señalar error. 
+- Se debe incluir un botón que permita regresar a la pantalla de LogIn.
+- Crear las rutas para que se muestre el cambio de página. 
+
+#### Tareas
+- Crear prototipo de baja fidelidad
+- Crear prototipo de alta fidelidad
+- Elegir cuántas carpetas y archivos vamos a necesitar.
+- Vincular el proyecto a Firebase
+- Vincular y manejar Firebase Auth
+- Hacer el template de Registro
+- Hacer CSS mobile first
+- Tener un archivo para la lógica de Firebase.
+- Usar la función createUserWithEmailAndPassword
+- Revisar que se guardaron los datos en Firebase
+- Crear una función que permita obtener los valores de cada input
+- Vincular los valores del input con la función de Firebase.
+- Agregar la configuración de observador de estado
+- Si el registro es exitoso, mostrar en el HTML el mensaje "Su cuenta se ha registrado exitosamente".
+
+### ***HU2 Acceso a suarios ya registrados***
+**YO COMO** usuario **QUIERO** acceder a mi cuenta (ya registrada) en la red social **PARA** poder visualizar mi contenido 
+
+#### Criterios de Aceptación
+- Que el formulario sólo me solicite el correo y la contraseña con las que me registré, o incluya un botón especial para iniciar con Google.
+- Que pueda visualizar la página de iniciar sesión en cualquier dispositivo
+- Que la navegación por la página sea accesible.
+- Que la URL de la página tenga un pathname que se identifique con la pantalla en la que me encuentro .
+
+#### Definición de Terminado
+- Que valide si el usuario ya existe
+- Si el usuario no existe, mandar un mensaje de error
+- Validar si los datos ingresados en el input son correctos
+- Debe ser una single page
+- Haber recibido un feedback de otra compañera
+- Test unitario
+- Testeo manual buscando errores e imperfecciones simples
+- Pruebas de usabilidad
+- Incorporar feedback
+
+#### Tareas
+- Diseñar el template para iniciar sesión
+- Crear CSS mobile first
+- Desarrollar la función signInWithEmailAndPassword de Firebase
+- Crear función que permita acceder con cuenta de Google
+- Usar función que maneje errores de cuentas que ya existen con otras credenciales.
+
+### ***HU3 Vista Home de la red social***
+**YO COMO** usuario **QUIERO** que al iniciar sesión la red social me mandé a la pantalla _"Home"_ **PARA** visualizar mis publicaciones.
+
+#### Criterios de Aceptación
+- Al dar click en iniciar sesión, me mandé a una pantalla diferente
+- Que en la pantalla Home pueda ver las publicaciones de otras personas.
+- Que pueda visualizar la pantalla Home en cualquier dispositivo
+- Que en la parte superior se vea un logo de "Perfil" junto con el logo de la Red Social y un icono para "Cerrar sesión"
+- Que en la parte inferior de la pantalla tenga un menú que me llevé a Home, a "Buscar", o a "Configuración".
+- Que en la pantalla Home las publicaciones aparezcan por orden (de la fecha más antigua al más reciente)
+
+#### Definición de Terminado
+- Crear prototipo de baja fidelidad
+- Diseñar prototipo de alta fidelidad
+- Crear template "Home"
+- Revisar Firestore
+- Debe ser una single page
+- Haber recibido un feedback de otra compañera
+- Test unitario
+- Testeo manual buscando errores e imperfecciones simples
+- Pruebas de usabilidad
+- Incorporar feedback
+
+#### Tareas
+- Diseñar el prototipo de baja fidelidad
+- Crear el prototipo de alta fidelidad en Figma de Home
+- Crear el template de Home
+- Utilizar los íconos que manejamos en Figma
+- Víncular la página Home con el router para que se modifique la URL de nuestra página
+- Reconocer cuantos botones y eventos serán necesarios aplicar en dicha vista
+- Crear una función que guarde los datos del usuario.
+- Crear una función que identifique si el usuario inicio sesión o no para permitirle visualizar la pantalla Home.
+- Estudiar Firestore para analizar los datos que son necesarios
+- Comenzar con el uso de Firestore para crear una colección con los post o reviews
+- Crear la página de Editar perfil (si queremos que todos los íconos tengan funcionalidad)
+- Checar las reglas de firestore para evitar que todos puedan ver la informacion
+- Revisar que los posts no aparezcan dos veces en Home
+- Darle estilo a posts para que se ajusten con el diseño de Home
+- Diseñar la vista de posts para equipos de cómputo
+
+### ***HU4 Crear un post***
+**YO COMO** usuario **QUIERO** poder crear y publicar un post **PARA** calificar o recomendar una película/serie
+
+#### Criterios de Aceptación
+- Al darle click a un botón específico en home, este debería de llevarme a una página donde pueda crear mi publicación
+- El post deberá de tener una estructura para que el usuario llene la información y de una reseña valiosa
+- La estructura debe de contener título, género, calificación y comentario
+- Debe contener un boton para regresar al home en caso de que ya no quiera crear la publicación
+- Debe contener un boton para ingresar la información
+- Debe mantener el mismo diseño que las otras pantallas, respetando la paleta de colores.
+
+#### Definición de Terminado
+- Debe ser una single page
+- Haber recibido un feedback de otra compañera
+- Test unitario
+- Testeo manual buscando errores e imperfecciones simples
+- Pruebas de usabilidad
+- Incorporar feedback
+- Debe existir una colección en Firestore de "posts"
+- CSS responsive
+
+#### Tareas
+- Crear prototipo de alta fidelidad para la página "posts"
+- Crear template para la creación de la publicación
+- Hacer el routing para entrar y salir de la pantalla de creación de la publicación
+- Crear colección en Firestore que guarde la información de las publicaciones
+- Guardar los valores de los input de post
+- Buscar cómo pasar la información del formulario de creación a la colección de Firebase
+- Verificar las reglas de Firestore
+- Buscar cómo hacer que la publicación aparezca en Home
+- Crear los eventos que permitan cambiar de pantallas y publicar
+
+### ***HU5 Interacción con el post***
+**YO COMO** usuario **QUIERO** poder darle like/ comentar/ editar/ eliminar los post **PARA** interactuar con mis publicaciones y las de otras personas.
+
+#### Criterios de Aceptación
+- Que solo yo pueda editar y borrar mis propias publicaciones
+- Que cualquier persona pueda darle like a mis publicaciones
+- Que yo pueda darle like a las publicaciones de los demás
+- Que cuando le de click al botón de editar, me lleve a una nueva página donde ya se encuentre toda la información de la publicación
+- Que cuando quiera borrar mis publicaciones, me aparezca un mensaje de confirmación
+
+#### Definición de Terminado
+- Debe ser una single page
+- Haber recibido un feedback de otra compañera
+- Test unitario
+- Testeo manual buscando errores e imperfecciones simples
+- Pruebas de usabilidad
+- Incorporar feedback
+
+#### Tareas
+- Hacer que los botones borrar y editar aparezcan sólo para el creador del post
+- Crear un botón de like con el ícono elegido en el prototipo
+- Que la interacción de los botones sea por publicación
+- Crear función borrar post
+- Crear función editar y update post
+- Crear función para darle like, guardarlo en el array y contar el número de elementos en el array
+
+### ***HU6 Cerrar sesión***
+**YO COMO** usuario **QUIERO** que la Red Social me permita cerrar mi sesión **PARA** proteger mi privacidad y evitar que otros manipulen mis publicaciones
+
+#### Criterios de Aceptación
+- Quiero tener un botón que me permita cerrar sesión en la Red Social
+- Al momento de cerrar sesión, y para verificar que mis datos están protegidos, espero que la página no pueda regresarse y mostrar _"Home"_
+
+#### Definición de Terminado
+- Debe ser una single page
+- Haber recibido un feedback de otra compañera
+- Test unitario
+- Testeo manual buscando errores e imperfecciones simples
+- Pruebas de usabilidad
+- Incorporar feedback
+
+#### Tareas
+- Poner un icono que represente al logOut
+- Crear la función de signOut en firebase
+- Vincular la funcion signOut con la función onNavigate
+- Crear una validación con onAuthStateChanged para verificar que el usuario ya no está logueado
+- Cambiar el onpopState cuando el usuario no esté logueado para proteger su privacidad
+
+
+## 3. Objetivos de aprendizaje cumplidos
 
 ### HTML
 
-- [ ] **Uso de HTML semántico**
-
-  <details><summary>Links</summary><p>
-
-  * [HTML semántico](https://curriculum.laboratoria.la/es/topics/html/02-html5/02-semantic-html)
-  * [Semantics - MDN Web Docs Glossary](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#Semantics_in_HTML)
-</p></details>
+- [x] Uso de HTML semántico
 
 ### CSS
 
-- [ ] **Uso de selectores de CSS**
-
-  <details><summary>Links</summary><p>
-
-  * [Intro a CSS](https://curriculum.laboratoria.la/es/topics/css/01-css/01-intro-css)
-  * [CSS Selectors - MDN](https://developer.mozilla.org/es/docs/Web/CSS/CSS_Selectors)
-</p></details>
-
-- [ ] **Modelo de caja (box model): borde, margen, padding**
-
-  <details><summary>Links</summary><p>
-
-  * [Box Model & Display](https://curriculum.laboratoria.la/es/topics/css/01-css/02-boxmodel-and-display)
-  * [The box model - MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model)
-  * [Introduction to the CSS box model - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model)
-  * [CSS display - MDN](https://developer.mozilla.org/pt-BR/docs/Web/CSS/display)
-  * [display - CSS Tricks](https://css-tricks.com/almanac/properties/d/display/)
-</p></details>
-
-- [ ] **Uso de flexbox en CSS**
-
-  <details><summary>Links</summary><p>
-
-  * [A Complete Guide to Flexbox - CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-  * [Flexbox Froggy](https://flexboxfroggy.com/#es)
-  * [Flexbox - MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox)
-</p></details>
+- [x] Uso de selectores de CSS
+  
+- [x] Modelo de caja (box model): borde, margen, padding
+  
+- [x] Uso de flexbox en CSS
 
 ### Web APIs
 
-- [ ] **Uso de selectores del DOM**
-
-  <details><summary>Links</summary><p>
-
-  * [Manipulación del DOM](https://curriculum.laboratoria.la/es/topics/browser/02-dom/03-1-dom-methods-selection)
-  * [Introducción al DOM - MDN](https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model/Introduction)
-  * [Localizando elementos DOM usando selectores - MDN](https://developer.mozilla.org/es/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors)
-</p></details>
-
-- [ ] **Manejo de eventos del DOM (listeners, propagación, delegación)**
-
-  <details><summary>Links</summary><p>
-
-  * [Introducción a eventos - MDN](https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Events)
-  * [EventTarget.addEventListener() - MDN](https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener)
-  * [EventTarget.removeEventListener() - MDN](https://developer.mozilla.org/es/docs/Web/API/EventTarget/removeEventListener)
-  * [El objeto Event](https://developer.mozilla.org/es/docs/Web/API/Event)
-</p></details>
-
-- [ ] **Manipulación dinámica del DOM**
-
-  <details><summary>Links</summary><p>
-
-  * [Introducción al DOM](https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model/Introduction)
-  * [Node.appendChild() - MDN](https://developer.mozilla.org/es/docs/Web/API/Node/appendChild)
-  * [Document.createElement() - MDN](https://developer.mozilla.org/es/docs/Web/API/Document/createElement)
-  * [Document.createTextNode()](https://developer.mozilla.org/es/docs/Web/API/Document/createTextNode)
-  * [Element.innerHTML - MDN](https://developer.mozilla.org/es/docs/Web/API/Element/innerHTML)
-  * [Node.textContent - MDN](https://developer.mozilla.org/es/docs/Web/API/Node/textContent)
-</p></details>
-
-- [ ] **Ruteado (History API, evento hashchange, window.location)**
-
-  <details><summary>Links</summary><p>
-
-  * [Manipulando el historial del navegador - MDN](https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador)
-</p></details>
+- [x] Uso de selectores del DOM
+  
+- [x] Manejo de eventos del DOM (listeners, propagación, delegación)
+  
+- [x] Manipulación dinámica del DOM
+  
+- [x] Ruteado (History API, evento hashchange, window.location)
 
 ### JavaScript
 
-- [ ] **Arrays (arreglos)**
-
-  <details><summary>Links</summary><p>
-
-  * [Arreglos](https://curriculum.laboratoria.la/es/topics/javascript/04-arrays)
-  * [Array - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/)
-  * [Array.prototype.sort() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
-  * [Array.prototype.forEach() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
-  * [Array.prototype.map() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-  * [Array.prototype.filter() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
-  * [Array.prototype.reduce() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
-</p></details>
-
-- [ ] **Objetos (key, value)**
-
-  <details><summary>Links</summary><p>
-
-  * [Objetos en JavaScript](https://curriculum.laboratoria.la/es/topics/javascript/05-objects/01-objects)
-</p></details>
-
-- [ ] **Diferenciar entre tipos de datos primitivos y no primitivos**
-
-- [ ] **Variables (declaración, asignación, ámbito)**
-
-  <details><summary>Links</summary><p>
-
-  * [Valores, tipos de datos y operadores](https://curriculum.laboratoria.la/es/topics/javascript/01-basics/01-values-variables-and-types)
-  * [Variables](https://curriculum.laboratoria.la/es/topics/javascript/01-basics/02-variables)
-</p></details>
-
-- [ ] **Uso de condicionales (if-else, switch, operador ternario, lógica booleana)**
-
-  <details><summary>Links</summary><p>
-
-  * [Estructuras condicionales y repetitivas](https://curriculum.laboratoria.la/es/topics/javascript/02-flow-control/01-conditionals-and-loops)
-  * [Tomando decisiones en tu código — condicionales - MDN](https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/conditionals)
-</p></details>
-
-- [ ] **Uso de bucles/ciclos (while, for, for..of)**
-
-  <details><summary>Links</summary><p>
-
-  * [Bucles (Loops)](https://curriculum.laboratoria.la/es/topics/javascript/02-flow-control/02-loops)
-  * [Bucles e iteración - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Loops_and_iteration)
-</p></details>
-
-- [ ] **Funciones (params, args, return)**
-
-  <details><summary>Links</summary><p>
-
-  * [Funciones (control de flujo)](https://curriculum.laboratoria.la/es/topics/javascript/02-flow-control/03-functions)
-  * [Funciones clásicas](https://curriculum.laboratoria.la/es/topics/javascript/03-functions/01-classic)
-  * [Arrow Functions](https://curriculum.laboratoria.la/es/topics/javascript/03-functions/02-arrow)
-  * [Funciones — bloques de código reutilizables - MDN](https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions)
-</p></details>
-
-- [ ] **Pruebas unitarias (unit tests)**
-
-  <details><summary>Links</summary><p>
-
-  * [Empezando con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/getting-started)
-</p></details>
-
-- [ ] **Pruebas asíncronas**
-
-  <details><summary>Links</summary><p>
-
-  * [Tests de código asincrónico con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/asynchronous)
-</p></details>
-
-- [ ] **Uso de mocks y espías**
-
-  <details><summary>Links</summary><p>
-
-  * [Manual Mocks con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/manual-mocks)
-</p></details>
-
-- [ ] **Módulos de ECMAScript (ES Modules)**
-
-  <details><summary>Links</summary><p>
-
-  * [import - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/import)
-  * [export - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/export)
-</p></details>
-
-- [ ] **Uso de linter (ESLINT)**
-
-- [ ] **Uso de identificadores descriptivos (Nomenclatura y Semántica)**
-
-- [ ] **Diferenciar entre expresiones (expressions) y sentencias (statements)**
-
-- [ ] **Callbacks**
-
-  <details><summary>Links</summary><p>
-
-  * [Función Callback - MDN](https://developer.mozilla.org/es/docs/Glossary/Callback_function)
-</p></details>
-
-- [ ] **Promesas**
-
-  <details><summary>Links</summary><p>
-
-  * [Promise - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-  * [How to Write a JavaScript Promise - freecodecamp (en inglés)](https://www.freecodecamp.org/news/how-to-write-a-javascript-promise-4ed8d44292b8/)
-</p></details>
+- [x] Arrays (arreglos)
+  
+- [x] Objetos (key, value)
+  
+- [x] Diferenciar entre tipos de datos primitivos y no primitivos
+  
+- [x] Variables (declaración, asignación, ámbito)
+  
+- [x] Uso de condicionales (if-else, switch, operador ternario, lógica booleana)
+  
+- [x] Uso de bucles/ciclos (while, for, for..of)
+  
+- [x] Funciones (params, args, return)
+  
+- [x] Pruebas unitarias (unit tests)
+  
+- [x] Pruebas asíncronas
+  
+- [x] Uso de mocks y espías
+  
+- [x] Módulos de ECMAScript (ES Modules)
+  
+- [x] Uso de linter (ESLINT)
+  
+- [x] Uso de identificadores descriptivos (Nomenclatura y Semántica)
+  
+- [x] Diferenciar entre expresiones (expressions) y sentencias (statements)
+  
+- [x] Callbacks
+  
+- [x] Promesas
 
 ### Git y Github
 
-- [ ] **Uso de comandos de git (add | commit | pull | status | push)**
-- [ ] **Manejo de repositorios de GitHub (clone | fork | gh-pages)**
-- [ ] **Colaboración en Github (branches | pull requests | |tags)**
-- [ ] **Organización en Github (projects | issues | labels | milestones)**
+- [x] Uso de comandos de git (add | commit | pull | status | push)
 
-  <details><summary>Links</summary><p>
+- [x] Manejo de repositorios de GitHub (clone | fork | gh-pages)
 
-  * [Sitio oficial de GitHub Pages](https://pages.github.com/)
-</p></details>
+- [x] Colaboración en Github (branches | pull requests | |tags)
+
+- [x] Organización en Github (projects | issues | labels | milestones)
 
 ### UX (User eXperience)
 
-- [ ] **Diseñar la aplicación pensando en y entendiendo al usuario**
+- [x] Diseñar la aplicación pensando en y entendiendo al usuario
 
-- [ ] **Crear prototipos para obtener feedback e iterar**
+- [x] Crear prototipos para obtener feedback e iterar
 
-- [ ] **Aplicar los principios de diseño visual (contraste, alineación, jerarquía)**
+- [x] Aplicar los principios de diseño visual (contraste, alineación, jerarquía)
 
-- [ ] **Planear y ejecutar tests de usabilidad**
+- [x] Planear y ejecutar tests de usabilidad
 
 ### Firebase
 
-- [ ] **Firebase Auth**
+- [x] Firebase Auth
 
-  <details><summary>Links</summary><p>
+- [x] Firestore
 
-  * [Primeros pasos con Firebase Authentication en sitios web - Documentación oficial](https://firebase.google.com/docs/auth/web/start?hl=es)
-  * [Administra usuarios en Firebase (onAuthStateChanged)](https://firebase.google.com/docs/auth/web/manage-users?hl=es#get_the_currently_signed-in_user)
-</p></details>
 
-- [ ] **Firestore**
+## 4. Prototipos de baja y alta fidelidad
 
-  <details><summary>Links</summary><p>
+### Prototipos de baja fidelidad
 
-  * [Firestore - Documentación oficial](https://firebase.google.com/docs/firestore?hl=es)
-  * [Reglas de seguridad de Firestore - Documentación oficial](https://firebase.google.com/docs/rules?hl=es)
-  * [Obtén actualizaciones en tiempo real con Cloud Firestore - Documentación oficial](https://firebase.google.com/docs/firestore/query-data/listen?hl=es)
-</p></details>
+![Registro e inicio de sesión](./src/assets/readMe/Baja%20fidelidad.png "Páginas de inicio de sesión y de registro")
+![Bienvenida 1](./src/assets/readMe/Bienvenida%201.png "Prueba de página de inicio de sesión 1")
+![Bienvenida 2](./src/assets/readMe/Bienvenida%202.png "Prueba de página de inicio de sesión 2")
+![Bienvenida 3](./src/assets/readMe/Bienvenida%203.png "Prueba de página de inicio de sesión 3")
+![Bienvenida 4](./src/assets/readMe/Bienvenida%204.png "Prueba de página de inicio de sesión 4")
+![Crear post 1](./src/assets/readMe/Crear%20Post1.png "Prueba de página para crear post 1")
 
-## 4. Consideraciones generales
+### Prototipos de alta fidelidad
 
-* Este proyecto se debe trabajar en equipos de tres.
+![Bienvenida](./src/assets/readMe/Bienvenida.png "Página de inicio de sesión")
+![Registro](./src/assets/readMe/Registro.png "Página de registro")
+![Home](./src/assets/readMe/Home.png "Página de inicio")
+![Crear Post](./src/assets/readMe/Crear%20Post.png "Página para crear un post")
 
-* La lógica del proyecto debe estar implementada completamente en JavaScript
-  (ES6+), HTML y CSS :smiley:. Para este proyecto **no está permitido** utilizar
-  _frameworks_ o librerías de CSS y JS.
+Acceso al prototipo en [Figma](https://www.figma.com/file/SVWYnBEJLvsVkxcpYU7WFo/Red-Social-NOVA?node-id=0%3A1)
 
-* La división y organización del trabajo debe permitir, sin excepciones, que
-  **cada integrante** del equipo practique el aprendizaje de todo lo involucrado
-  en **cada historia**. _No se dividan el trabajo como en una fábrica._
-  - ¿Hasta acá has avanzado en tus proyectos con cierta fluidez y sin mayores
-    problemas? Sé generosa con tus compañeras, permíteles aprender y practicar
-    sin restricciones, aunque tome un poco más de tiempo. Aproveha de
-    _coachearlas_, de hacer _pair programming_, una de las mejores maneras de
-    aprender es explicando verbalmente.
 
-  - ¿Se te está haciendo difícil y te cuesta un poco más avanzar? No te quedes
-    con las partes "fáciles" del proyecto, conversa, negocia, exige tu oportunidad
-    para practicar y aprender lo que se te hace más difícil.
+## 5. Acceso a nuestra red social
 
-* Solamente pueden trabajar en una única historia por vez, no pueden avanzar a
-  la siguiente sin haber completado la anterior. La historia se completa cuando
-  se cumplen **todos** sus Criterios de Aceptación + **toda** su Definición
-  de Terminado.
+Consulta el siguiente enlace ara acceder a **NOVA**: 
+https://red-social-nova.web.app/
 
-Para comenzar tendrás que hacer un _fork_ y _clonar_ este repositorio.
+Si no deseas registrarte, puedes utilizar la siguiente cuenta para ingresar:
 
-## 5. Criterios de aceptación mínimos del proyecto
+**Correo:** _prueba@nova.com_
 
-### 5.1 Boilerplate
+**Contraseña:** _123abc_
 
-Este proyecto no incluye un _boilerplate_, así es que tendrás que definir la
-estructura de carpetas y escribir tus propias Pruebas Unitarias (_tests_). Para
-hacerlo, puedes guiarte de los proyectos anteriores.
 
-### 5.2 Definición del producto
+## 6. Tecnologías utilizadas
+- HTML
+- CSS
+- Vanilla JS
+- Firebase y Firestore
+- Figma 
+- Jest
 
-En el `README.md` cuéntanos brevemente cómo descubriste las necesidades de los
-usuarios y cómo llegaste a la definición final de tu producto. Es importante
-que detalles:
 
-* Quiénes son los principales usuarios de producto.
-* Qué problema resuelve el producto / para qué le servirá a estos usuarios.
-
-### 5.3 Historias de usuario
-
-Una vez que entiendas las necesidades de tus usuarixs, escribe las Historias de
-Usuario que representen todo lo que necesitan hacer/ver en la Red Social. Cada
-una de tus Historias de Usuario debe tener:
-
-* **Criterios de Aceptación:** todo lo que debe ocurrir para satisfacer las
-  necesidades del usuario.
-
-* **Definición de terminado:** todos los aspectos técnicos que deben cumplirse
-  para que, como equipo, sepan que esa historia está terminada y lista
-  para publicarse. **Todas** tus Historias de Usuario (salvo excepciones), deben
-  incluir estos aspectos en su Definición de Terminado (más todo lo que
-  necesiten agregar):
-
-  - Debe ser una SPA.
-  - Debe ser _responsive_.
-  - Deben haber recibido _code review_ de al menos una compañera de otro equipo.
-  - Hicieron los _test_ unitarios
-  - Testearon manualmente buscando errores e imperfecciones simples.
-  - Hicieron _pruebas_ de usabilidad e incorporaron el _feedback_ de los
-    usuarios como mejoras.
-  - Desplegaron su aplicación y etiquetaron la versión (git tag).
-
-### 5.4 Diseño de la Interfaz de Usuario (prototipo de baja fidelidad)
-
-Debes definir cuál será el flujo que seguirá el usuario dentro de tu aplicación
-y, con eso, diseña la Interfaz de Usuario (UI por sus siglas en inglés) que
-siga este flujo.
-
-### 5.5 Responsive
-
-Debe verse bien en dispositivos de pantallas grandes
-(computadoras/es, laptops, etc.) y pequeñas (_tablets_, celulares, etc.). Te
-sugerimos seguir la técnica de _`mobile first`_ (más detalles sobre esta técnica
-al final).
-
-### 5.6 Consideraciones del comportamiento de la interfaz de usuario (UI)
-
-Estas consideraciones te ayudarán a escribir las Definiciones de Terminado de
-tus H.U.:
-
-#### Creación de cuenta de usuario e inicio de sesión
-
-* _Login_ con Firebase:
-  - Para el _login_ y las publicaciones en el muro puedes utilizar [Firebase](https://firebase.google.com/products/database/)
-  - Creación de cuenta de acceso y autenticación con cuenta de correo y
-    contraseña, y también con una cuenta de Google.
-* Validaciones:
-  - Solamente se permite el acceso a usuarios con cuentas válidas.
-  - No pueden haber usuarios repetidos.
-  - La cuenta de usuario debe ser un correo electrónico válido.
-  - Lo que se escriba en el campo (_input_) de contraseña debe ser secreto.
-* Comportamiento:
-  - Al enviarse el formulario de registro o inicio de sesión, debe validarse.
-  - Si hay errores, se deben mostrar mensajes descriptivos para ayudar al
-  usuario a corregirlos.
-
-#### Muro/timeline
-
-* Validaciones:
-  - Al publicar, se debe validar que exista contenido en el _input_.
-* Comportamiento:
-  - Al recargar la aplicación, se debe verificar si el usuario está _logueado_
-    antes de mostrar contenido.
-  - Poder publicar un _post_.
-  - Poder dar y quitar _like_ a una publicación. Máximo uno por usuario.
-  - Llevar un conteo de los _likes_.
-  - Poder eliminar un post específico.
-  - Pedir confirmación antes de eliminar un _post_.
-  - Al dar _click_ para editar un _post_, debe cambiar el texto por un _input_
-    que permita editar el texto y luego guardar los cambios.
-  - Al guardar los cambios debe cambiar de vuelta a un texto normal pero con la
-    información editada.
-  - Al recargar la página debo de poder ver los textos editados.
-
-### 5.7 Consideraciones técnicas Front-end
-
-* Separar la manipulación del DOM de la lógica (Separación de responsabilidades).
-* Contar con múltiples vistas. Para esto, tu aplicación debe ser una
- [Single Page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
-* Alterar y persistir datos. Los datos que agregues o modifiques deberán
-  persistir a lo largo de la aplicación. Te recomendamos que uses
-  [Firebase](https://firebase.google.com/) para eso también.
-
-#### Pruebas unitarias (unit tests)
-
-* Recuerda que no hay un _setup_ de **tests** definido, dependerá de
-  la estructura de tu proyecto. Algo que no debes de olvidar es pensar en éstas
-  pruebas, te pueden ayudar a definir la estructura y nomenclatura de tu lógica.
-
-* Los tests unitarios deben cubrir un mínimo del 70% de _statements_, _functions_,
-  _lines_, y _branches_.
-
-### 5.8 Consideraciones técnicas UX
-
-* Hacer al menos 2 entrevistas con usuarios.
-* Hacer un  prototipo de baja fidelidad.
-* Asegurarte de que la implementación en código siga los lineamientos del
-  diseño.
-* Hacer sesiones de _testing de usabilidad_ con el producto en HTML.
-
-## 6. Hacker edition
-
-Las secciones llamadas _Hacker Edition_ son **opcionales**. Si **terminaste**
-con todo lo anterior y te queda tiempo, intenta completarlas. Así podrás
-profundizar y/o ejercitar más sobre los objetivos de aprendizaje del proyecto.
-
-* Permite crear posts con imágenes.
-* Permite buscar usuarios, agregar y eliminar "amigos".
-* Permite definir la privacidad de los _posts_ (público o solamente para amigos).
-* Permite ver su muro de cualquier usuario "no-amigo" (solamente los
-  posts _públicos_).
-* Permite comentar o responder una publicación.
-* Permite editar perfil.
-
-## 7. Entrega
-
-El proyecto será _entregado_ subiendo tu código a GitHub (`commit`/`push`) y la
-interfaz será desplegada usando GitHub pages u otro servicio de hosting que
-puedas haber encontrado en el camino.
-
-***
-
-## 8. Pistas, tips y Lecturas complementarias
-
-### Mobile first
-
-El concepto de [_mobile first_](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
-hace referencia a un proceso de diseño y desarrollo donde partimos de cómo se ve
-y cómo funciona la aplicación en un dispositivo móvil primero, y más adelante se
-ve como adaptar la aplicación a pantallas progresivamente grandes y
-características específicas del entorno desktop. Esto es en contraposición al
-modelo tradicional, donde primero se diseñaban los websites (o webapps) para
-desktop y después se trataba de _arrugar_ el diseño para que entre en pantallas
-más chicas. La clave acá es asegurarse de que desde el principio diseñan usando
-la vista _responsive_ de las herramientas de desarrollador (developer tools) del
-navegador. De esa forma, partimos de cómo se ve y comporta la aplicación en una
-pantalla y entorno móvil.
-
-### Múltiples vistas
-
-En proyectos anteriores nuestras aplicaciones habían estado compuestas de una
-sola _vista_ principal (una sóla _página_). En este proyecto se introduce la
-necesidad de tener que dividir nuestra interfaz en varias _vistas_ o _páginas_
-y ofrecer una manera de navegar entre estas vistas. Este problema se puede
-afrontar de muchas maneras: con archivos HTML independientes (cada uno con su
-URL) y links tradicionales, manteniendo estado en memoria y rederizando
-condicionalmente (sin refrescar la página), [manipulando el historial del
-navegador](https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador)
-con [`window.history`](https://developer.mozilla.org/es/docs/Web/API/Window/history).
-En este proyecto te invitamos a explorar opciones y decidir una opción
-de implementación.
-
-### Escritura de datos
-
-En los proyectos anteriores hemos consumido (leído) datos, pero todavía no
-habíamos escrito datos (salvar cambios, crear datos, borrar, ...). En este
-proyecto tendrás que crear (salvar) nuevos datos, así como leer, actualizar y
-modificar datos existentes. Estos datos se podrán guardar de forma remota
-usando [Firebase](https://firebase.google.com/).
-
-Otras:
-
-* [Modulos: Export](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/export)
-* [Modulos: Import](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/import)
-* [Diseño web, responsive design y la importancia del mobile first - Media Click](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
-* [Mobile First: el enfoque actual del diseño web móvil - 1and1](https://www.1and1.es/digitalguide/paginas-web/diseno-web/mobile-first-la-nueva-tendencia-del-diseno-web/)
-* [Mobile First - desarrolloweb.com](https://desarrolloweb.com/articulos/mobile-first-responsive.html)
-* [Mobile First - ZURB](https://zurb.com/word/mobile-first)
-* [Mobile First Is NOT Mobile Only - Nielsen Norman Group](https://www.nngroup.com/articles/mobile-first-not-mobile-only/)
+## 7. Cocreadoras
+ - [Emma Aguila](https://github.com/emmaspace)
+ - [Isabel Valdés](https://github.com/isvaoc)
+ - [Angélica Venta](https://github.com/AngieVenta)
