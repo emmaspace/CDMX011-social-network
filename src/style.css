@@ -1,0 +1,632 @@
+@import url("https://fonts.googleapis.com/css2?family=Niramit:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Baumans&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #000027;
+  text-align: center;
+  font-family: "Niramit", sans-serif;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+header {
+  margin: 5vh 0 1.5rem;
+  text-align: center;
+}
+
+.formContainer,
+#login-container {
+  border: 1px solid #1dd4ed;
+  box-shadow: 0px 0px 8px 2px #1dd4ed, inset 0px 0px 19px 1px #1dd4ed;
+  border-radius: 28px;
+  width: 90vw;
+  padding: 20px 20px 30px 40px;
+  text-align: left;
+  margin: auto;
+}
+
+#login-container {
+  margin: 20px auto;
+}
+
+.signUp,
+#login-container {
+  color: #1dd4ed;
+  font-size: 20px;
+}
+
+.signUpButton {
+  background: linear-gradient(
+    271.63deg,
+    rgba(255, 0, 199, 0.479167) 0%,
+    rgba(137, 18, 156, 0.52) 27.6%,
+    #1b8695 100%
+  );
+  box-shadow: 0px 4px 4px rgba(38, 129, 141, 0.47);
+  border-radius: 25px;
+  width: 285px;
+  text-align: center;
+  padding: 8px;
+  font-size: 25px;
+  color: #ffffff;
+  margin-top: 25px;
+  border: none;
+}
+
+#logInButton {
+  background: linear-gradient(
+    271.63deg,
+    #1b8695 0%,
+    rgba(137, 18, 156, 0.52) 72.92%,
+    rgba(255, 0, 199, 0.479167) 97.92%
+  );
+  box-shadow: 0px 4px 4px rgba(38, 129, 141, 0.47);
+  border-radius: 25px;
+  width: 285px;
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  margin: 12px 0px;
+  border: none;
+  padding: 8px 0px;
+}
+
+#logInGoogleButton {
+  background: linear-gradient(
+    180deg,
+    rgba(24, 155, 132, 0.62) 0%,
+    rgba(24, 61, 155, 0.62) 100%
+  );
+  box-shadow: 0px 4px 4px rgba(38, 129, 141, 0.47);
+  border-radius: 25px;
+  width: 285px;
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  margin: 12px 0px;
+  border: none;
+  padding: 8px 0px;
+}
+
+#span-boton {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+#submitReview {
+  background: linear-gradient(
+    271.63deg,
+    #1b8695 0%,
+    rgba(137, 18, 156, 0.52) 72.92%,
+    rgba(255, 0, 199, 0.479167) 97.92%
+  );
+  box-shadow: 0px 4px 4px rgba(38, 129, 141, 0.47);
+  border-radius: 25px;
+  width: 200px;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  margin: 20px 0px 12px 0px;
+  border: none;
+  padding: 5px 0;
+  font-family: "Baumans", cursive;
+}
+
+.signUpButton:active,
+#logInButton:active,
+#logInGoogleButton:active,
+#submitReview:active {
+  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  transform: translateY(3px);
+}
+
+.signUpFooter {
+  width: 95%;
+  position: fixed;
+  text-align: right;
+  bottom: 10px;
+  right: 10px;
+}
+
+.color-line input {
+  background: transparent;
+  border: none;
+  width: 97%;
+  border-bottom: 4px solid;
+  color: #f8f7f7;
+  font-size: 18px;
+  border-image: linear-gradient(
+      270deg,
+      #1b8695 0%,
+      rgba(137, 18, 156, 0.52) 52.08%,
+      rgba(255, 0, 199, 0.4792) 100%
+    )
+    10;
+  margin-bottom: 20px;
+}
+
+#miembro {
+  color: white;
+  font-family: "Niramit", sans-serif;
+  font-size: 18px;
+  margin: 8vh 0px 0px;
+}
+
+#register {
+  color: #1dd4ed;
+  font-family: "Niramit", sans-serif;
+  font-size: 24px;
+  margin: 0px;
+}
+
+#img-signup,
+#img-login {
+  width: 70%;
+}
+
+#message,
+#messageError {
+  color: white;
+  font-size: 1em;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#container-header,
+#header-post {
+  border: none;
+  border-bottom: 4px solid;
+  border-image: linear-gradient(
+      270deg,
+      #1b8695 0%,
+      rgba(137, 18, 156, 0.52) 52.08%,
+      rgba(255, 0, 199, 0.4792) 100%
+    )
+    10;
+}
+
+#container-header {
+  padding: 10px 0px 20px;
+}
+
+#header-post {
+  padding: 10px 40px 4px 20px;
+  margin: 0px;
+  text-align: right;
+}
+
+#container-footer {
+  padding: 10px 0px;
+  border: none;
+  border-top: 4px solid;
+  border-image: linear-gradient(
+      270deg,
+      #1b8695 0%,
+      rgba(137, 18, 156, 0.52) 52.08%,
+      rgba(255, 0, 199, 0.4792) 100%
+    )
+    10;
+}
+
+#container-footer p {
+  margin: 0px;
+  font-size: 12px;
+}
+
+.title-section {
+  border: none;
+  border-bottom: 1px double #26818d;
+}
+
+#header-home {
+  margin: 0;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: #000027;
+  z-index: 5;
+}
+
+.info-container h2 {
+  width: fit-content;
+  font-size: 1.8em;
+  background: -webkit-linear-gradient(0deg, rgb(209, 4, 165) 0%, #00b7cf 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: white;
+}
+
+#header-home div a {
+  display: flex;
+  align-items: center;
+}
+
+#main-home {
+  margin-top: 60px;
+  min-height: calc(90vh - 70px);
+}
+
+.homeFooter {
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  background-color: #000027;
+}
+
+#user-image {
+  height: 32px;
+}
+
+#back-logout {
+  display: inline-block;
+  height: 28px;
+}
+
+.postButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 17%;
+  right: 5%;
+  position: fixed;
+  width: fit-content;
+}
+
+#post-link {
+  height: 3em;
+  width: 3em;
+  background: linear-gradient(
+    271.63deg,
+    rgba(255, 0, 199, 0.64) 0%,
+    rgba(137, 18, 156, 0.62) 27.6%,
+    #1b8695 100%
+  );
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#post-link img {
+  display: inline-block;
+  height: 26px;
+  position: relative;
+  top: 25%;
+}
+
+#to-home,
+#to-profile {
+  position: relative;
+  top: 25%;
+  display: inline-block;
+  height: 28px;
+}
+
+#editReview {
+  background: linear-gradient(
+    271.63deg,
+    #1b8695 0%,
+    rgba(137, 18, 156, 0.52) 72.92%,
+    rgba(255, 0, 199, 0.479167) 97.92%
+  );
+  box-shadow: 0px 4px 4px rgba(38, 129, 141, 0.47);
+  border-radius: 25px;
+  width: 200px;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  margin: 20px 0px 12px 0px;
+  border: none;
+  padding: 5px 0;
+  font-family: "Baumans", cursive;
+}
+
+.contornos {
+  border-radius: 13px;
+  border: 2px solid #1fafc2;
+  background: transparent;
+  width: 80%;
+  padding: 5px 10px;
+  display: block;
+  margin-left: 10%;
+}
+
+.formPost {
+  font-family: "Baumans", cursive;
+  font-size: 20px;
+  color: white;
+  padding: 1em;
+}
+.formPost option {
+  color: black;
+  font-family: "Baumans", cursive;
+}
+
+.formPost select,
+.formPost textarea,
+.formPost input {
+  color: white;
+  font-size: 16px;
+  font-family: "Niramit", sans-serif;
+}
+.formPost label {
+  color: white;
+  display: block;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  margin-left: 10%;
+  margin-top: 1em;
+}
+
+#form-post p {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.postContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  border: none;
+  border-bottom: 1px solid #26818d;
+  padding: 20px 20px;
+}
+
+.postTemplate:last-child {
+  margin-bottom: calc(4em - 5px);
+}
+
+.info-container {
+  width: 300px;
+  color: white;
+  text-align: left;
+  position: relative;
+}
+
+.imag-container {
+  padding-top: 5px;
+  margin-right: 12px;
+}
+
+.GenreContainer {
+  width: fit-content;
+  padding: 3px 10px;
+  border-radius: 20px 20px;
+  display: inline-block;
+  font-size: 14px;
+  position: absolute;
+  right: 0%;
+  top: 70px;
+}
+.postDate {
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+.info-spacing {
+  margin-bottom: 1em;
+}
+
+.postScore,
+.ScoreNumber {
+  display: inline-block;
+}
+
+.ScoreNumber {
+  color: rgb(250, 250, 43);
+}
+
+.postBttns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.postBttns button {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
+}
+
+.userBttns {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+#hide {
+  display: none;
+  cursor: pointer;
+}
+
+#show {
+  cursor: pointer;
+}
+
+#hideRepeat {
+  display: none;
+  cursor: pointer;
+}
+
+#showRepeat {
+  cursor: pointer;
+}
+
+#formLogIn #show,
+#formLogIn #hide,
+#formRegister #hide,
+#formRegister #show,
+#formRegister #hideRepeat,
+#formRegister #showRepeat {
+  position: relative;
+  bottom: -5px;
+}
+
+img[alt="Ícono de Google"] {
+  margin-right: 8px;
+}
+
+@media (min-device-width: 961px) {
+  .formContainer,
+  #login-container {
+    width: 50%;
+  }
+
+  #user-image {
+    height: 40px;
+  }
+
+  #logo-home {
+    height: 40px;
+  }
+
+  #logout {
+    height: 36px;
+  }
+
+  #img-login {
+    width: 24%;
+  }
+
+  #img-signup {
+    width: 20%;
+  }
+
+  #miembro {
+    margin: 2vh 0px 0px;
+  }
+
+  .info-container {
+    width: 50vw;
+  }
+
+  .postDate p {
+    font-size: 1em;
+  }
+
+  .info-container p {
+    font-size: 1.2em;
+  }
+
+  .info-container h2 {
+    width: fit-content;
+    font-size: 2.2em;
+    background: -webkit-linear-gradient(
+      0deg,
+      rgb(209, 4, 165) 0%,
+      #00b7cf 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: white;
+  }
+
+  .info-container h3 {
+    font-size: 1.5em;
+  }
+
+  .GenreContainer p {
+    font-size: 1.3em;
+    font-weight: bold;
+    font-style: oblique;
+    margin: 0px;
+  }
+
+  .imag-container {
+    padding-top: 11px;
+  }
+
+  .postButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 15%;
+    right: 5%;
+    width: fit-content;
+  }
+  #post-link {
+    display: inline-block;
+    border-radius: 40px;
+    background: linear-gradient(
+      271.63deg,
+      rgba(255, 0, 200, 0.767) 0%,
+      rgba(138, 18, 156, 0.781) 27.6%,
+      #1b8695 100%
+    );
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    font-size: 28px;
+    padding: 8px 20px;
+    width: fit-content;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    text-decoration: none;
+    height: fit-content;
+  }
+  #post-link span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.3s;
+    width: 100%;
+  }
+  #post-link span:after {
+    content: "Nueva publicación ";
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0px;
+  }
+  #post-link:hover span {
+    padding-right: 0px;
+  }
+
+  #post-link:hover span:after {
+    opacity: 1;
+    left: 0px;
+  }
+
+  #post-link:hover {
+    width: 300px;
+    text-align: right;
+    border-radius: 40px;
+  }
+
+  .postLikes p {
+    display: inline-block;
+  }
+  
+  #container-footer p {
+    margin: 0px;
+    font-size: 14px;
+  }
+
+  .title-section {
+    font-size: 45px;
+  }
+}
